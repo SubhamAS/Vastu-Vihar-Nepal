@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", "Avenir Next", "Segoe UI", sans-serif;
+  --font-serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --color-brand-pine: #18382f;
+  --color-brand-forest: #102920;
+  --color-brand-paper: #f4f2eb;
+  --color-brand-ink: #202c27;
+  --color-brand-brass: #b79755;
+  --color-brand-gold: #d5b46a;
+  --color-brand-champagne: #e0c782;
+  --color-brand-ochre: #806b3f;
+  --color-brand-line: #ded9c9;
+  --color-brand-muted: #6b746e;
+}
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --vv-pine: var(--color-brand-pine);
+  --vv-pine-deep: var(--color-brand-forest);
+  --vv-brass: var(--color-brand-brass);
+  --vv-limestone: var(--color-brand-paper);
+  --vv-ink: var(--color-brand-ink);
+  --vv-muted: var(--color-brand-muted);
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-width: 320px;
+  overflow-x: clip;
+  background: var(--vv-limestone);
+  color: var(--vv-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.footer-logo-outline {
+  filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1.5px rgb(255 255 255 / 72%));
+}
+
+::selection {
+  background: var(--vv-brass);
+  color: var(--vv-pine-deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--vv-brass);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
