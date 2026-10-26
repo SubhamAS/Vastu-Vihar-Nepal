@@ -1,0 +1,22 @@
+{
+  "name": "vvnepal",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace vvnepal-frontend",
+    "dev:frontend": "npm run dev --workspace vvnepal-frontend",
+    "dev:backend": "npm run dev --workspace vvnepal-backend",
+    "build": "npm run build --workspace vvnepal-frontend",
+    "lint": "npm run lint --workspace vvnepal-frontend",
+    "start": "npm run start --workspace vvnepal-backend"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "mongoose": "^9.11.4",
+    "nodemon": "^3.1.14"
+  }
+}
