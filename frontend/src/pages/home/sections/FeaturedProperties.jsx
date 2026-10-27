@@ -189,7 +189,7 @@ export default function FeaturedProperties() {
               type="button"
               onClick={() => moveCarousel(-1)}
               aria-label="Previous properties"
-              className="h-11 w-11 relative top-60 hidden md:grid mr-2 place-items-center border rounded-full border-brand-line text-brand-pine transition-colors hover:bg-brand-pine hover:text-brand-paper focus-visible:outline-brand-brass"
+              className="h-11 w-90 relative top-60 hidden md:grid mr-2 place-items-center border rounded-full border-brand-line text-brand-pine transition-colors hover:bg-brand-pine hover:text-brand-paper focus-visible:outline-brand-brass"
             >
               <ArrowUpRight size={18} className="rotate-225" />
             </button>
