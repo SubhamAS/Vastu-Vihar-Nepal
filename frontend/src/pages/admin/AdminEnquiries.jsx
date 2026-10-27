@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
-import { Download, ListFilter, RotateCw } from "lucide-react";
+import { Download, ListFilter, RotateCw, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import AdminEmptyState from "../../Components/admin/AdminEmptyState";
-import { fetchEnquiries, updateEnquiryStatus } from "../../lib/adminApi";
+import FuseButton from "../../Components/admin/FuseButton";
+import {
+  deleteEnquiry,
+  fetchEnquiries,
+  updateEnquiryStatus,
+} from "../../lib/adminApi";
 
 const statuses = ["new", "contacted", "interested", "closed", "not interested"];
 const properties = [
@@ -97,6 +102,7 @@ export default function AdminEnquiries() {
   const [error, setError] = useState("");
   const [statusError, setStatusError] = useState("");
   const [savingId, setSavingId] = useState("");
+  const [deletingId, setDeletingId] = useState("");
 
   useEffect(() => {
     const timer = window.setTimeout(() => setSearch(searchInput.trim()), 250);
@@ -178,6 +184,23 @@ export default function AdminEnquiries() {
       setSavingId("");
     }
   };
+  const handleEnquiryDelete = async (item) => {
+    if (deletingId) return;
+    setDeletingId(item.id);
+    setStatusError("");
+    try {
+      await deleteEnquiry(item.id);
+      if (items.length === 1 && page > 1) {
+        setPage((currentPage) => currentPage - 1);
+      } else {
+        setRefreshKey((key) => key + 1);
+      }
+    } catch (requestError) {
+      setStatusError(requestError.message || "Could not delete the enquiry.");
+    } finally {
+      setDeletingId("");
+    }
+  };
   const startRecord =
     pagination.total === 0 ? 0 : (pagination.page - 1) * pagination.limit + 1;
   const endRecord = Math.min(
@@ -201,7 +224,7 @@ export default function AdminEnquiries() {
           <button
             type="button"
             onClick={() => setRefreshKey((key) => key + 1)}
-            disabled={loading}
+            disabled={loading || Boolean(deletingId)}
             className="inline-flex h-9 items-center gap-2 rounded-md border border-slate-300 bg-white px-3 text-xs font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-50"
           >
             <RotateCw size={14} className={loading ? "animate-spin" : ""} />{" "}
@@ -334,13 +357,16 @@ export default function AdminEnquiries() {
                 <th scope="col" className="px-4 py-3">
                   Status
                 </th>
+                <th scope="col" className="px-4 py-3 text-right">
+                  Action
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {loading ? (
                 <tr>
                   <td
-                    colSpan="5"
+                    colSpan="6"
                     className="px-5 py-12 text-center text-xs text-slate-500"
                   >
                     Loading enquiries…
@@ -348,7 +374,7 @@ export default function AdminEnquiries() {
                 </tr>
               ) : error ? (
                 <tr>
-                  <td colSpan="5" className="p-0">
+                  <td colSpan="6" className="p-0">
                     <AdminEmptyState
                       title="Enquiries could not be loaded"
                       description="Check the backend connection and admin key, then refresh the list."
@@ -357,7 +383,7 @@ export default function AdminEnquiries() {
                 </tr>
               ) : items.length === 0 ? (
                 <tr>
-                  <td colSpan="5" className="p-0">
+                  <td colSpan="6" className="p-0">
                     <AdminEmptyState
                       title="No enquiries found"
                       description={
@@ -392,8 +418,30 @@ export default function AdminEnquiries() {
                       <EnquiryStatusSelect
                         item={item}
                         saving={savingId === item.id}
-                        disabled={loading}
+                        disabled={loading || Boolean(deletingId)}
                         onChange={handleRowStatusChange}
+                      />
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                      <FuseButton
+                        className="w-12"
+                        label=""
+                        undoLabel=""
+                        ariaLabel={`Delete enquiry from ${item.name || "unnamed customer"}`}
+                        undoAriaLabel={`Cancel deleting enquiry from ${item.name || "unnamed customer"}`}
+                        doneLabel="Deleted"
+                        icon={<Trash2 size={40} />}
+                        color="#9f1239"
+                        background="#fff1f2"
+                        fuseColor="#e11d48"
+                        size="sm"
+                        radius={18}
+                        undoWindow={4000}
+                        fuse="outline"
+                        commitOn="fuseEnd"
+                        settle="reset"
+                        disabled={loading || Boolean(deletingId)}
+                        onCommit={() => handleEnquiryDelete(item)}
                       />
                     </td>
                   </tr>
@@ -433,15 +481,37 @@ export default function AdminEnquiries() {
                       {item.email || "No email provided"}
                     </p>
                   </div>
-                  <EnquiryStatusSelect
-                    item={item}
-                    saving={savingId === item.id}
-                    disabled={loading}
-                    onChange={handleRowStatusChange}
-                  />
+                  <div className="flex shrink-0 items-center gap-2">
+                    <EnquiryStatusSelect
+                      item={item}
+                      saving={savingId === item.id}
+                      disabled={loading || Boolean(deletingId)}
+                      onChange={handleRowStatusChange}
+                    />
+                    <FuseButton
+                      className="w-12"
+                      label=""
+                      undoLabel=""
+                      ariaLabel={`Delete enquiry from ${item.name || "unnamed customer"}`}
+                      undoAriaLabel={`Cancel deleting enquiry from ${item.name || "unnamed customer"}`}
+                      doneLabel="Deleted"
+                      icon={<Trash2 size={20} />}
+                      color="#9f1239"
+                      background="#fff1f2"
+                      fuseColor="#e11d48"
+                      size="sm"
+                      radius={18}
+                      undoWindow={4000}
+                      fuse="outline"
+                      commitOn="fuseEnd"
+                      settle="reset"
+                      disabled={loading || Boolean(deletingId)}
+                      onCommit={() => handleEnquiryDelete(item)}
+                    />
+                  </div>
                 </div>
-                <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-xs">
-                  <div className="min-w-0">
+                <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-xs border-t border-neutral-200 mb-2">
+                  <div className="min-w-0 mt-3">
                     <dt className="text-[10px] font-medium uppercase tracking-wide text-slate-400">
                       Phone
                     </dt>
@@ -449,7 +519,7 @@ export default function AdminEnquiries() {
                       {item.phone || "—"}
                     </dd>
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 mt-3">
                     <dt className="text-[10px] font-medium uppercase tracking-wide text-slate-400">
                       Property
                     </dt>

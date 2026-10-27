@@ -168,4 +168,24 @@ router.patch("/enquiries/:id/status", requireAdminApiKey, async (request, respon
   }
 });
 
+router.delete("/enquiries/:id", requireAdminApiKey, async (request, response, next) => {
+  const { id } = request.params;
+
+  if (!/^[a-f\d]{24}$/i.test(id)) {
+    return response.status(400).json({ error: "The enquiry ID is invalid." });
+  }
+
+  try {
+    const enquiries = await getEnquiriesCollection();
+    const result = await enquiries.deleteOne({ _id: new ObjectId(id) });
+    if (result.deletedCount === 0) {
+      return response.status(404).json({ error: "That enquiry could not be found." });
+    }
+
+    return response.json({ success: true, id });
+  } catch (error) {
+    return next(error);
+  }
+});
+
 export default router;

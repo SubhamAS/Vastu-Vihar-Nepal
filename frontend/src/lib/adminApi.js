@@ -72,6 +72,12 @@ export function updateEnquiryStatus(id, status) {
   );
 }
 
+export function deleteEnquiry(id) {
+  return adminRequest(`/api/admin/enquiries/${encodeURIComponent(id)}`, {
+    method: "DELETE",
+  });
+}
+
 export async function fetchPriceLists() {
   return adminRequest("/api/admin/price-lists");
 }
