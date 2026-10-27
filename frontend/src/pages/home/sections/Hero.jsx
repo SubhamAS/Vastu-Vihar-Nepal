@@ -231,10 +231,9 @@ export default function Hero() {
       </div>
 
       {/* Scroll prompt */}
-      <div className="absolute bottom-7 right-6 z-10 hidden text-[9px] uppercase tracking-[0.2em] text-white/80 md:block sm:right-10 lg:right-16">
+      <div className="absolute bottom-7 left-1/2 z-10 hidden uppercase tracking-[0.2em] text-white md:block sm:right-10 lg:right-16">
         <span className="flex items-center gap-2">
-          Scroll to discover
-          <ArrowDown size={15} strokeWidth={1.5} />
+          <img className="w-10" src="/Icons/scroll.gif" alt="Scroll to discover" />
         </span>
       </div>
 
