@@ -1,5 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import ScrollTop from "./Components/ScrollTop";
@@ -133,6 +134,7 @@ const App = () => {
   return (
     <div>
       <ScrollTop />
+      <Analytics />
       {!isAdminPath && <Navbar onOpenContact={handleOpenContact} />}
       <Suspense
         fallback={
