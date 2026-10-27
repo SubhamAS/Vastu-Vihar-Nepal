@@ -35,7 +35,7 @@ The Vite development server proxies `/api` requests to Express on port 5000. The
 
 ### Vercel deployment
 
-Connect the repository to Vercel with the project root set to `Nepal` (the directory containing this README). The included `vercel.json` builds the Vite frontend, serves React Router deep links such as `/admin/enquiries`, and routes `/api/*` to the Express function. Configure these environment variables in the Vercel project for Production and Preview deployments:
+Connect the repository to Vercel with the project root set to the repository root (the directory containing this README). The included `vercel.json` builds the Vite frontend, serves React Router deep links such as `/admin/enquiries`, and routes explicit `/api/*` endpoints to the Express app. Configure these environment variables in the Vercel project for Production and Preview deployments:
 
 - `MONGODB_URI`
 - `MONGODB_DATABASE` (optional; defaults to `vastuvihar`)
