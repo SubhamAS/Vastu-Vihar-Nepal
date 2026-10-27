@@ -49,6 +49,14 @@ body {
   box-sizing: border-box;
 }
 
+.featured-properties-track {
+  scrollbar-width: none;
+}
+
+.featured-properties-track::-webkit-scrollbar {
+  display: none;
+}
+
 .footer-logo-outline {
   filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1.5px rgb(255 255 255 / 72%));
 }
