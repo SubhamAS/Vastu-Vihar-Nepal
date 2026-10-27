@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { Download, ListFilter, RotateCw, Trash2 } from "lucide-react";
+import {
+  CheckCircle2,
+  Download,
+  ListFilter,
+  RotateCw,
+  Trash2,
+  X,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import AdminEmptyState from "../../Components/admin/AdminEmptyState";
 import FuseButton from "../../Components/admin/FuseButton";
@@ -103,11 +110,18 @@ export default function AdminEnquiries() {
   const [statusError, setStatusError] = useState("");
   const [savingId, setSavingId] = useState("");
   const [deletingId, setDeletingId] = useState("");
+  const [toast, setToast] = useState("");
 
   useEffect(() => {
     const timer = window.setTimeout(() => setSearch(searchInput.trim()), 250);
     return () => window.clearTimeout(timer);
   }, [searchInput]);
+
+  useEffect(() => {
+    if (!toast) return undefined;
+    const timer = window.setTimeout(() => setToast(""), 4000);
+    return () => window.clearTimeout(timer);
+  }, [toast]);
 
   useEffect(() => {
     let active = true;
@@ -190,6 +204,7 @@ export default function AdminEnquiries() {
     setStatusError("");
     try {
       await deleteEnquiry(item.id);
+      setToast(`${item.name || "Enquiry"} deleted.`);
       if (items.length === 1 && page > 1) {
         setPage((currentPage) => currentPage - 1);
       } else {
@@ -338,6 +353,24 @@ export default function AdminEnquiries() {
             {statusError}
           </div>
         )}
+      {toast && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-5 right-5 z-50 flex max-w-[calc(100vw-2.5rem)] items-center gap-3 border border-emerald-200 bg-white px-4 py-3 text-sm text-emerald-900 shadow-lg"
+        >
+          <CheckCircle2 size={18} className="shrink-0 text-emerald-600" />
+          <span>{toast}</span>
+          <button
+            type="button"
+            onClick={() => setToast("")}
+            aria-label="Dismiss notification"
+            className="ml-2 grid size-7 shrink-0 place-items-center text-emerald-800 hover:bg-emerald-50 focus-visible:outline-emerald-700"
+          >
+            <X size={16} />
+          </button>
+        </div>
+      )}
         <div className="hidden overflow-x-auto xl:block">
           <table className="w-full min-w-180 text-left text-xs">
             <thead className="bg-slate-50 text-[10px] font-semibold uppercase tracking-[0.08em] text-slate-500">
