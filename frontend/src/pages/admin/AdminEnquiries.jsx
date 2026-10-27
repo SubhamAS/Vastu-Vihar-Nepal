@@ -89,7 +89,7 @@ export default function AdminEnquiries() {
   const [items, setItems] = useState([]);
   const [pagination, setPagination] = useState({
     page: 1,
-    limit: 20,
+    limit: 10,
     total: 0,
     totalPages: 0,
   });
@@ -109,7 +109,7 @@ export default function AdminEnquiries() {
     setError("");
     fetchEnquiries({
       page,
-      limit: 20,
+      limit: 10,
       search,
       status,
       dateFrom,
@@ -481,7 +481,7 @@ export default function AdminEnquiries() {
               type="button"
               onClick={() => setPage((value) => Math.max(1, value - 1))}
               disabled={loading || page <= 1}
-              className="rounded border border-slate-300 px-3 py-1.5 font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+              className="rounded border cursor-pointer border-slate-300 px-3 py-1.5 font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
             >
               Previous
             </button>
@@ -494,7 +494,7 @@ export default function AdminEnquiries() {
                 setPage((value) => Math.min(pagination.totalPages, value + 1))
               }
               disabled={loading || page >= pagination.totalPages}
-              className="rounded border border-slate-300 px-3 py-1.5 font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+              className="rounded border cursor-pointer border-slate-300 px-3 py-1.5 font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
             >
               Next
             </button>
