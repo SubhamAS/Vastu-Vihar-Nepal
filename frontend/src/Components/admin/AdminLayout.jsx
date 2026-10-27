@@ -17,15 +17,15 @@ export default function AdminLayout() {
   };
 
   return (
-    <div className="min-h-screen w-full min-w-0 bg-slate-50 text-slate-800">
+    <div className="admin-shell min-h-screen w-full min-w-0 bg-slate-50 text-slate-800">
       <AdminSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      <div className="min-h-screen w-full min-w-0 md:pl-64.5">
+      <div className="admin-workspace min-h-screen w-full min-w-0 md:pl-64.5">
         <AdminHeader
           pathname={pathname}
           onMenuClick={() => setSidebarOpen(true)}
           onLogout={handleLogout}
         />
-        <main className="mx-auto w-full min-w-0 max-w-375 px-4 py-6 sm:px-7 sm:py-8 lg:px-9">
+        <main className="admin-content mx-auto w-full min-w-0 max-w-375 px-4 py-6 sm:px-7 sm:py-8 lg:px-9">
           <Outlet />
         </main>
       </div>

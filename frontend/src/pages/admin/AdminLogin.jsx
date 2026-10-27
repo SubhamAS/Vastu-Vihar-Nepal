@@ -29,7 +29,7 @@ export default function AdminLogin() {
   };
 
   return (
-    <main className="grid min-h-screen bg-slate-100 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.8fr)]">
+    <main className="admin-login grid min-h-screen bg-slate-100 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.8fr)]">
       <section className="relative hidden flex-col justify-between overflow-hidden bg-slate-900 p-10 text-white lg:flex xl:p-14">
         <Link to="/" className="relative z-10 inline-flex w-fit items-center gap-3 text-white">
           <span className="flex size-10 items-center justify-center rounded-md bg-blue-500"><Building2 size={20} /></span>

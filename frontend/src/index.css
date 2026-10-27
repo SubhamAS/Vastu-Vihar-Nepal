@@ -1,5 +1,63 @@
 @import "tailwindcss";
 
+/* Admin workspace: blue navigation and a calm, high-contrast operations canvas. */
+.admin-shell {
+  --admin-blue: #132a6f;
+  --admin-blue-deep: #103bd1;
+  --admin-ink: #19243a;
+  --admin-muted: #78849a;
+  --admin-canvas: #f2f5fb;
+  background: var(--admin-canvas) !important;
+  color: var(--admin-ink);
+  font-family: "DM Sans", "Avenir Next", "Segoe UI", sans-serif;
+}
+.admin-login { background: #f2f5fb; color: #19243a; font-family: "DM Sans", "Avenir Next", "Segoe UI", sans-serif; }
+.admin-login > section:first-child { background: #1f2e5c; }
+.admin-login > section:first-child > div.absolute { border-color: rgb(255 255 255 / 14%); }
+.admin-login > section:last-child input { border-radius: 11px; border-color: #dce3f0; }
+.admin-login > section:last-child button[type="submit"] { border-radius: 11px; background: #103bd1; }
+.admin-login > section:last-child button[type="submit"]:hover { background: #103bd1; }
+.admin-sidebar {
+  width: 240px;
+  border: 0;
+  border-radius: 0 0 28px 0;
+  background: var(--admin-blue) !important;
+}
+.admin-sidebar > div:first-child { border-color: rgb(255 255 255 / 16%); padding-inline: 25px; }
+.admin-sidebar nav { padding: 30px 14px; }
+.admin-sidebar nav a { min-height: 44px; border-radius: 14px; padding-inline: 14px; color: rgb(255 255 255 / 78%); }
+.admin-sidebar nav a:hover { background: rgb(255 255 255 / 12%); color: white; }
+.admin-sidebar nav a[aria-current="page"] { background: #f2f5fb; color: var(--admin-blue); }
+.admin-sidebar nav a[aria-current="page"] svg { color: var(--admin-blue); }
+.admin-sidebar-bottom { border-color: rgb(255 255 255 / 16%); }
+.admin-sidebar-bottom > a { color: rgb(255 255 255 / 82%); }
+.admin-sidebar-bottom > a:hover { background: rgb(255 255 255 / 12%); }
+.admin-workspace { padding-left: 240px; }
+.admin-header { height: 76px; background: rgb(255 255 255 / 94%); border-color: #e8edf6; }
+.admin-content { max-width: 1600px; padding-top: 34px; padding-bottom: 48px; }
+.admin-content h2 { color: var(--admin-ink); letter-spacing: -.035em; }
+.admin-content > div > section,
+.admin-content section[aria-labelledby],
+.admin-content section[aria-label] { border-color: #e8edf4; border-radius: 17px; box-shadow: 0 7px 22px rgb(37 58 105 / 3%); }
+.admin-content table thead { background: #f7f9fd; }
+.admin-content table thead th { color: #8994a7; letter-spacing: .045em; }
+.admin-content table tbody tr { transition: background-color .15s ease; }
+.admin-content table tbody tr:hover { background: #f5f8ff; }
+.admin-stat-card { min-height: 132px; border-color: #e8edf4; border-radius: 17px; box-shadow: 0 7px 22px rgb(37 58 105 / 3%); }
+.admin-stat-card:nth-child(1) > div > span { color: #fff; background: #2458ef; }
+.admin-stat-card:nth-child(2) > div > span { color: #fff; background: #17b890; }
+.admin-stat-card:nth-child(3) > div > span { color: #fff; background: #f1a933; }
+.admin-stat-card:nth-child(4) > div > span { color: #fff; background: #9161dd; }
+.admin-stat-card > p { font-size: 30px; letter-spacing: -.04em; }
+.admin-header button { border-radius: 12px; }
+.admin-content button:not([aria-label^="Delete"]), .admin-content a[class*="bg-blue"] { border-radius: 11px; }
+.admin-content input, .admin-content select { border-radius: 10px; }
+@media (max-width: 767px) {
+  .admin-sidebar { border-radius: 0 22px 22px 0; }
+  .admin-workspace { padding-left: 0; }
+  .admin-content { padding-top: 24px; }
+}
+
 @theme {
   --font-sans: "DM Sans", "Avenir Next", "Segoe UI", sans-serif;
   --font-serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;

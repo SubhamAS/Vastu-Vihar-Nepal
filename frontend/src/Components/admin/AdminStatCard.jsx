@@ -1,6 +1,6 @@
 export default function AdminStatCard({ label, icon: Icon, value, loading }) {
   return (
-    <article className="min-w-0 border border-slate-200 bg-white rounded-2xl transition duration-300 hover:-translate-y-1 hover:shadow-xl p-4 sm:p-5">
+    <article className="admin-stat-card min-w-0 border border-slate-200 bg-white rounded-2xl transition duration-300 hover:-translate-y-1 hover:shadow-xl p-4 sm:p-5">
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-[13px] font-medium text-slate-600">{label}</h2>
         <span className="flex size-8 items-center justify-center rounded-md bg-slate-100 text-slate-600">

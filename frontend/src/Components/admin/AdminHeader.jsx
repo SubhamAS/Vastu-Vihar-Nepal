@@ -16,7 +16,7 @@ export default function AdminHeader({ pathname, onMenuClick, onLogout }) {
   }).format(new Date());
 
   return (
-    <header className="sticky top-0 z-30 flex h-18 items-center justify-between border-b border-slate-200 bg-white/95 px-4 backdrop-blur sm:px-7 lg:px-9">
+    <header className="admin-header sticky top-0 z-30 flex h-18 items-center justify-between border-b border-slate-200 bg-white/95 px-4 backdrop-blur sm:px-7 lg:px-9">
       <div className="flex items-center gap-3">
         <button type="button" onClick={onMenuClick} className="rounded-md p-2 text-slate-600 hover:bg-slate-100 md:hidden" aria-label="Open admin navigation">
           <Menu size={20} />
@@ -27,7 +27,7 @@ export default function AdminHeader({ pathname, onMenuClick, onLogout }) {
         </div>
       </div>
       <div className="flex items-center gap-3 sm:gap-5">
-        <span className="hidden items-center gap-2 text-xs text-slate-500 lg:inline-flex">
+        <span className="admin-date hidden items-center gap-2 text-xs text-slate-500 lg:inline-flex">
           <CalendarDays size={15} /> {today}
         </span>
         <button type="button" onClick={onLogout} className="inline-flex items-center gap-2 rounded-md border border-slate-200 px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900" aria-label="Sign out">
