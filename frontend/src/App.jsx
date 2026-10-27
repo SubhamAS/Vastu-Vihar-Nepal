@@ -7,14 +7,18 @@ import WhatsAppButton from "./Components/WhatsAppButton/WhatsAppButton";
 import Loading from "./Components/Loading/Loading";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
-const DiscoverPropertyPage = lazy(() => import("./pages/properties/DiscoverPropertyPage"));
+const DiscoverPropertyPage = lazy(
+  () => import("./pages/properties/DiscoverPropertyPage"),
+);
 const ModelsPage = lazy(() => import("./pages/models/ModelsPage"));
 const AboutPage = lazy(() => import("./pages/about/AboutPage"));
 const AmenitiesPage = lazy(() => import("./pages/projects/AmenitiesPage"));
 const TechnologyPage = lazy(() => import("./pages/projects/TechnologyPage"));
 const GalleryPage = lazy(() => import("./pages/gallery/GalleryPage"));
 const PriceListPage = lazy(() => import("./pages/pricing/PriceListPage"));
-const OfficeContactPage = lazy(() => import("./pages/contact/OfficeContactPage"));
+const OfficeContactPage = lazy(
+  () => import("./pages/contact/OfficeContactPage"),
+);
 const SiteContactPage = lazy(() => import("./pages/contact/SiteContactPage"));
 const NotFoundPage = lazy(() => import("./pages/not-found/NotFoundPage"));
 const CareerPage = lazy(() => import("./pages/career/CareerPage"));
@@ -25,24 +29,39 @@ const AdminLayout = lazy(() => import("./Components/admin/AdminLayout"));
 const AdminOverview = lazy(() => import("./pages/admin/AdminOverview"));
 const AdminEnquiries = lazy(() => import("./pages/admin/AdminEnquiries"));
 const AdminPriceLists = lazy(() => import("./pages/admin/AdminPriceLists"));
-const ContactModal = lazy(() => import("./Components/ContactModal/ContactModal"));
+const ContactModal = lazy(
+  () => import("./Components/ContactModal/ContactModal"),
+);
 
 const App = () => {
   const location = useLocation();
   const knownRoutes = [
-    "/", "/models", "/projects/amenities", "/projects/technology", "/about",
-    "/career", "/gallery", "/price-list", "/contact", "/contact/office",
-    "/contact/site", "/terms-and-conditions", "/privacy-policy", "/admin",
+    "/",
+    "/models",
+    "/projects/amenities",
+    "/projects/technology",
+    "/about",
+    "/career",
+    "/gallery",
+    "/price-list",
+    "/contact",
+    "/contact/office",
+    "/contact/site",
+    "/terms-and-conditions",
+    "/privacy-policy",
+    "/admin",
   ];
   const normalizedPathname = location.pathname.replace(/\/+$/, "") || "/";
-  const isAdminPath = normalizedPathname === "/admin" || normalizedPathname.startsWith("/admin/");
-  const isKnownRoute = knownRoutes.includes(normalizedPathname)
-    || /^\/properties\/[^/]+$/.test(normalizedPathname);
+  const isAdminPath =
+    normalizedPathname === "/admin" || normalizedPathname.startsWith("/admin/");
+  const isKnownRoute =
+    knownRoutes.includes(normalizedPathname) ||
+    /^\/properties\/[^/]+$/.test(normalizedPathname);
   const loadingClassName = isAdminPath
     ? "min-h-screen bg-slate-50"
     : isKnownRoute
-    ? "min-h-[110svh]"
-    : "mt-[4%] min-h-[min(690px,calc(100svh-84px))] max-[600px]:min-h-[min(650px,calc(100svh-70px))]";
+      ? "min-h-[110svh]"
+      : "mt-[4%] min-h-[min(690px,calc(100svh-84px))] max-[600px]:min-h-[min(650px,calc(100svh-70px))]";
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -77,12 +96,16 @@ const App = () => {
         const result = await response.json().catch(() => ({}));
 
         if (!response.ok) {
-          throw new Error(result.error || "We could not save your enquiry. Please try again.");
+          throw new Error(
+            result.error || "We could not save your enquiry. Please try again.",
+          );
         }
 
         setFormSubmitted(true);
       } catch (error) {
-        setSubmitError(error.message || "We could not save your enquiry. Please try again.");
+        setSubmitError(
+          error.message || "We could not save your enquiry. Please try again.",
+        );
       } finally {
         setIsSending(false);
       }
@@ -111,7 +134,18 @@ const App = () => {
     <div>
       <ScrollTop />
       {!isAdminPath && <Navbar onOpenContact={handleOpenContact} />}
-      <Suspense fallback={<Loading className={loadingClassName} label={isAdminPath ? "Loading admin workspace..." : "Loading Vastu Vihar..."} />}>
+      <Suspense
+        fallback={
+          <Loading
+            className={loadingClassName}
+            label={
+              isAdminPath
+                ? "Loading admin workspace..."
+                : "Loading Vastu Vihar..."
+            }
+          />
+        }
+      >
         <Routes>
           <Route path="/admin">
             <Route index element={<AdminLogin />} />

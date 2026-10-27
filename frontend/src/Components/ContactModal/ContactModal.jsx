@@ -34,10 +34,6 @@ export default function ContactModal({
     event.preventDefault();
     if (isAnimating || isSending) return;
     setIsAnimating(true);
-  };
-
-  const finishSubmit = () => {
-    setIsAnimating(false);
     onSubmit(form);
   };
 
@@ -213,7 +209,7 @@ export default function ContactModal({
                     size={18}
                     aria-hidden="true"
                     className={isAnimating ? "contact-plane-flight" : ""}
-                    onAnimationEnd={isAnimating ? finishSubmit : undefined}
+                    onAnimationEnd={isAnimating ? () => setIsAnimating(false) : undefined}
                   />
                 )}
               </button>
