@@ -1,6 +1,5 @@
-import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Component, lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-// import { Analytics } from "@vercel/analytics/react";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import ScrollTop from "./Components/ScrollTop";
@@ -33,6 +32,38 @@ const AdminPriceLists = lazy(() => import("./pages/admin/AdminPriceLists"));
 const ContactModal = lazy(
   () => import("./Components/ContactModal/ContactModal"),
 );
+
+class RouteErrorBoundary extends Component {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <main className="flex min-h-[70svh] flex-col items-center justify-center px-6 py-20 text-center">
+          <h1 className="font-display text-3xl font-medium text-brand sm:text-4xl">
+            This page didn’t load.
+          </h1>
+          <p className="mt-4 max-w-md text-sm leading-6 text-muted">
+            Reload the page to try loading the latest version of the site.
+          </p>
+          <button
+            type="button"
+            onClick={() => window.location.reload()}
+            className="mt-7 bg-brand px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-layout-dark"
+          >
+            Reload page
+          </button>
+        </main>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 const App = () => {
   const location = useLocation();
@@ -158,21 +189,22 @@ const App = () => {
     <div className="relative isolate">
       <ScrollTop />
       {/* <Analytics /> */}
-      <div className="relative z-10 mb-[var(--site-footer-height,0px)] bg-white">
+      <div className="relative z-10 mb-(--site-footer-height,0px) bg-white">
         {!isAdminPath && <Navbar onOpenContact={handleOpenContact} />}
-        <Suspense
-          fallback={
-            <Loading
-              className={loadingClassName}
-              label={
-                isAdminPath
-                  ? "Loading admin workspace..."
-                  : "Loading Vastu Vihar..."
-              }
-            />
-          }
-        >
-          <Routes>
+        <RouteErrorBoundary key={location.pathname}>
+          <Suspense
+            fallback={
+              <Loading
+                className={loadingClassName}
+                label={
+                  isAdminPath
+                    ? "Loading admin workspace..."
+                    : "Loading Vastu Vihar..."
+                }
+              />
+            }
+          >
+            <Routes>
           <Route path="/admin">
             <Route index element={<AdminLogin />} />
             <Route element={<AdminLayout />}>
@@ -208,8 +240,9 @@ const App = () => {
             element={<DiscoverPropertyPage onOpenContact={handleOpenContact} />}
           />
           <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
+            </Routes>
+          </Suspense>
+        </RouteErrorBoundary>
       </div>
       {!isAdminPath && <Footer ref={footerRef} />}
       {!isAdminPath && <WhatsAppButton />}

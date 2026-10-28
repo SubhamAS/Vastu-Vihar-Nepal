@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -18,7 +18,7 @@ export default function Hero() {
     return () => mediaQuery.removeEventListener("change", updateViewport);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const section = sectionRef.current;
     const video = videoRef.current;
 

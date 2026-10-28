@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { Building2, Globe2, MapPin, Landmark, Home } from "lucide-react";
 
 const milestones = [
@@ -14,7 +14,7 @@ const cardThemes = ["blue", "light", "red", "light", "blue"];
 export default function BrandStory() {
   const sectionRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const section = sectionRef.current;
     if (!section || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
