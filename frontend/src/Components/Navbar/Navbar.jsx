@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NavbarDropdown from "./NavbarDropdown";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/vvr.webp";
@@ -81,7 +81,7 @@ function MobileNavItems({
             to={item.to}
             onClick={closeMenu}
             className={({ isActive }) =>
-              `block flex-1 border-l-2 py-4 pl-3 text-sm font-medium tracking-wide transition-colors hover:text-brand-ochre ${isActive ? "border-brand-brass text-brand-pine" : "border-transparent text-[#526058]"}`
+              `block flex-1 border-l-2 py-4 pl-3 text-sm font-medium tracking-wide transition-colors hover:text-highlight-hover ${isActive ? "border-border-dark text-brand" : "border-transparent text-[#526058]"}`
             }
           >
             {item.label}
@@ -131,8 +131,30 @@ function MobileNavItems({
 const Navbar = ({ onOpenContact }) => {
   const [expandedMenus, setExpandedMenus] = useState({});
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollY.current;
+
+      if (currentScrollY < 48 || menuOpen || scrollDelta < -6) {
+        setIsVisible(true);
+      } else if (scrollDelta > 6) {
+        setIsVisible(false);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [menuOpen]);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -147,10 +169,10 @@ const Navbar = ({ onOpenContact }) => {
   };
 
   const linkClass =
-    "inline-flex items-center whitespace-nowrap border-b-2 border-transparent px-2.5 py-3 text-[12px] font-medium leading-none tracking-[0.01em] text-[#34423a] transition-colors hover:border-brand-brass hover:text-brand-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-brass xl:px-3 xl:text-[13px]";
+    "inline-flex items-center whitespace-nowrap border-b-2 border-transparent px-2.5 py-3 text-[12px] font-medium leading-none tracking-[0.01em] text-[#34423a] transition-colors hover:border-border-dark hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-dark xl:px-3 xl:text-[13px]";
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-brand-line bg-brand-paper/95 shadow-[0_4px_22px_rgba(16,41,32,0.07)] backdrop-blur-xl">
+    <header className={`fixed inset-x-0 top-0 z-50 w-full border-b border-border-light bg-white/95 shadow-[0_4px_22px_rgba(16,41,32,0.07)] backdrop-blur-xl will-change-[transform,opacity] transition-[transform,opacity] duration-900 ease-in-out ${isVisible || menuOpen ? "translate-y-0 opacity-100" : "-translate-y-full pointer-events-none opacity-0"}`}>
       <nav
         className="mx-auto flex min-h-20 w-full max-w-[1600px] items-center justify-between gap-4 px-5 sm:px-8 lg:gap-6 lg:px-[5%]"
         aria-label="Main navigation"
@@ -186,7 +208,7 @@ const Navbar = ({ onOpenContact }) => {
                 <NavLink
                   to={link.to}
                   onClick={closeMenu}
-                  className={({ isActive }) => `${linkClass} ${isActive ? "border-brand-brass text-brand-pine" : ""}`}
+                  className={({ isActive }) => `${linkClass} ${isActive ? "border-border-dark text-brand" : ""}`}
                 >
                   {link.label}
                 </NavLink>
@@ -200,7 +222,7 @@ const Navbar = ({ onOpenContact }) => {
           <button
             type="button"
             onClick={handleContactClick}
-            className="inline-flex cursor-pointer items-center gap-2 rounded-sm bg-brand-pine px-5 py-3 text-xs font-semibold tracking-wide text-white shadow-sm transition-colors hover:bg-brand-forest active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-brass"
+            className="inline-flex cursor-pointer items-center gap-2 rounded-sm bg-brand px-5 py-3 text-xs font-semibold tracking-wide text-white shadow-sm transition-colors hover:bg-layout-dark active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-dark"
           >
             Enquire
             <ArrowUpRight size={15} />
@@ -221,7 +243,7 @@ const Navbar = ({ onOpenContact }) => {
           <button
             type="button"
             onClick={handleContactClick}
-            className="rounded-sm bg-brand-pine px-3.5 py-2.5 text-[10px] font-semibold tracking-wide text-white transition hover:bg-brand-forest"
+            className="rounded-sm bg-brand px-3.5 py-2.5 text-[10px] font-semibold tracking-wide text-white transition hover:bg-layout-dark"
           >
             Enquire
           </button>
@@ -232,7 +254,7 @@ const Navbar = ({ onOpenContact }) => {
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav-menu"
-            className="flex size-10 items-center justify-center rounded-sm border border-brand-line text-brand-pine transition hover:border-brand-pine"
+            className="flex size-10 items-center justify-center rounded-sm border border-border-light text-brand transition hover:border-brand"
           >
             {menuOpen ? <X size={23} /> : <Menu size={23} />}
           </button>
@@ -262,7 +284,7 @@ const Navbar = ({ onOpenContact }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMenu}
-                className="block py-4 text-sm font-medium tracking-wide text-slate-600 transition-colors hover:text-brand-ochre"
+                className="block py-4 text-sm font-medium tracking-wide text-slate-600 transition-colors hover:text-highlight-hover"
               >
                 FOR INDIA
               </a>
@@ -276,3 +298,4 @@ const Navbar = ({ onOpenContact }) => {
 };
 
 export default Navbar;
+

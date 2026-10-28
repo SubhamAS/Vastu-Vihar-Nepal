@@ -12,6 +12,12 @@ function readText(value, maxLength) {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
 }
 
+function readRows(value, fields) {
+  if (!Array.isArray(value) || value.length > 100) return null;
+  return value.map((row) => Object.fromEntries(fields.map((field) => [field, readText(row?.[field], 500)])))
+    .filter((row) => Object.values(row).some(Boolean));
+}
+
 function isValidFileSignature(buffer, contentType) {
   if (contentType === "image/webp") {
     return buffer.length >= 12 && buffer.toString("ascii", 0, 4) === "RIFF"
@@ -67,6 +73,8 @@ router.post("/", requireAdminApiKey, async (request, response, next) => {
     const result = await priceLists.insertOne({
       name,
       address,
+      properties: [],
+      specifications: [],
       imagePath: "",
       fileName: "",
       contentType: "",
@@ -112,6 +120,16 @@ router.patch("/:id", requireAdminApiKey, async (request, response, next) => {
     }
     changes.isPublished = request.body.isPublished;
   }
+  if (Object.hasOwn(request.body || {}, "properties")) {
+    const properties = readRows(request.body.properties, ["name", "landArea", "carpetArea", "bua", "price", "otherExpenses"]);
+    if (!properties) return response.status(400).json({ error: "Property details must be a list of up to 100 properties." });
+    changes.properties = properties;
+  }
+  if (Object.hasOwn(request.body || {}, "specifications")) {
+    const specifications = readRows(request.body.specifications, ["name", "detail"]);
+    if (!specifications) return response.status(400).json({ error: "Specifications must be a list of up to 100 rows." });
+    changes.specifications = specifications;
+  }
   if (!Object.keys(changes).length) {
     return response.status(400).json({ error: "There are no valid price list changes to save." });
   }
@@ -121,10 +139,6 @@ router.patch("/:id", requireAdminApiKey, async (request, response, next) => {
     const id = new ObjectId(request.params.id);
     const current = await priceLists.findOne({ _id: id });
     if (!current) return response.status(404).json({ error: "That price list was not found." });
-    if (changes.isPublished && !current.imageFileId && !current.imagePath) {
-      return response.status(400).json({ error: "Upload a price list file before publishing this branch." });
-    }
-
     await priceLists.updateOne({ _id: id }, { $set: { ...changes, updatedAt: new Date() } });
     const item = await priceLists.findOne({ _id: id });
     return response.json({ item: serializePriceList(item, { admin: true }) });

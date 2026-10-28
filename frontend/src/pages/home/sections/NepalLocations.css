@@ -1,8 +1,8 @@
 .vv-nepal-map {
   z-index: 0;
-  background: #f3f3f1;
+  background: #f5f5f5;
   position: absolute;
-  font-family: "DM Sans", "Avenir Next", "Segoe UI", sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
 }
 
 .vv-nepal-map .leaflet-tile-pane {
@@ -15,11 +15,12 @@
 
 .vv-nepal-map .leaflet-control-zoom a {
   display: grid;
+  z-index: 10000;
   width: 44px;
   height: 44px;
   place-items: center;
   margin: 0 !important;
-  color: #18382f;
+  color: #011c5b;
   border: 1px solid #d8dce4 !important;
   border-radius: 50% !important;
   background: #fff;
@@ -32,8 +33,7 @@
   top: auto;
   bottom: 24px;
   left: auto;
-  right: 24px;
-  z-index: 10000;
+  right: 50px;
 }
 
 .vv-nepal-map .leaflet-bottom.leaflet-right {
@@ -51,15 +51,15 @@
 
 .vv-nepal-map .leaflet-control-zoom a:hover {
   color: #fff;
-  border-color: #18382f !important;
-  background: #18382f;
+  border-color: #011c5b !important;
+  background: #011c5b;
   box-shadow: 0 5px 18px rgb(17 35 76 / 32%);
 }
 
 .vv-nepal-map .leaflet-control-zoom a:focus-visible {
   position: relative;
   z-index: 1;
-  outline: 3px solid #d9272e;
+  outline: 3px solid #ed3136;
   outline-offset: 3px;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .vv-nepal-map-shell .vv-nepal-map-fade {
-  z-index: 10;
+  z-index: 0;
 }
 
 .vv-nepal-marker-wrap {
@@ -84,7 +84,7 @@
   place-items: center;
   border: 2px solid #fff;
   border-radius: 50% 50% 50% 0;
-  background: #e51f27;
+  background: #ed3136;
   box-shadow: 0 2px 8px rgb(0 0 0 / 28%);
   transform: rotate(-45deg);
   transition: scale 160ms ease;
@@ -114,22 +114,22 @@
 .vv-nepal-popup {
   display: grid;
   gap: 6px;
-  color: #202c27;
-  font-family: "DM Sans", "Avenir Next", "Segoe UI", sans-serif;
+  color: #111111;
+  font-family: "Roboto", Arial, sans-serif;
   font-size: 12px;
   line-height: 1.55;
 }
 
 .vv-nepal-popup strong {
-  color: #171717;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  color: #011c5b;
+  font-family: "Roboto", Arial, sans-serif;
   font-size: 23px;
   font-weight: 600;
   line-height: 1.1;
 }
 
 .vv-nepal-popup__province {
-  color: #6b746e;
+  color: #555555;
 }
 
 .vv-nepal-popup ul {
@@ -141,7 +141,7 @@
 
 .vv-nepal-popup a {
   width: fit-content;
-  color: #c9232c;
+  color: #c92227;
   font-weight: 600;
   text-decoration: none;
 }
@@ -152,12 +152,12 @@
 
 .vv-nepal-map-fade {
   position: absolute;
-  z-index: 10;
+  z-index: 0;
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgb(255 255 255 / 80%) 0%, transparent 50%, transparent 50%, rgb(255 255 255 / 70%) 100%),
-    linear-gradient(180deg, rgb(255 255 255 / 80%) 0%, transparent 50%, transparent 50%, rgb(255 255 255 / 70%) 100%);
+    linear-gradient(90deg, rgb(255 255 255 / 60%) 0%, transparent 60%, transparent 60%, rgb(255 255 255 / 60%) 100%),
+    linear-gradient(180deg, rgb(255 255 255 / 60%) 0%, transparent 60%, transparent 60%, rgb(255 255 255 / 60%) 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {

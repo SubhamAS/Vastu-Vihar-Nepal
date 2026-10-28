@@ -3,7 +3,8 @@ import { FileText, Pencil, Plus, RotateCw, Save, Trash2, Upload, X } from "lucid
 import AdminEmptyState from "../../Components/admin/AdminEmptyState";
 import { createPriceList, deletePriceList, fetchPriceLists, updatePriceList, uploadPriceListFile } from "../../lib/adminApi";
 
-const emptyForm = { name: "", address: "", sortOrder: 0, isPublished: false };
+const emptyForm = { name: "", address: "", sortOrder: 0, isPublished: false, properties: [], specifications: [] };
+const propertyFields = [["name", "Property name"], ["landArea", "Land area (sq.ft.)"], ["carpetArea", "Carpet area (sq.ft.)"], ["bua", "B.U.A. (sq.ft.)"], ["price", "Price (NPR)"], ["otherExpenses", "Other expenses (NPR)"]];
 
 export default function AdminPriceLists() {
   const [items, setItems] = useState([]);
@@ -40,7 +41,7 @@ export default function AdminPriceLists() {
   const openEdit = (item) => {
     setFormOpen(true);
     setEditingId(item.id);
-    setForm({ name: item.name, address: item.address, sortOrder: item.sortOrder, isPublished: item.isPublished });
+    setForm({ name: item.name, address: item.address, sortOrder: item.sortOrder, isPublished: item.isPublished, properties: item.properties || [], specifications: item.specifications || [] });
     setFile(null);
     setError("");
     setNotice("");
@@ -58,21 +59,12 @@ export default function AdminPriceLists() {
     event.preventDefault();
     setError("");
     setNotice("");
-    if (!editingId && !file) {
-      setError("Choose a price list file before adding this branch.");
-      return;
-    }
     if (file && file.size > 10 * 1024 * 1024) {
       setError("The price list file must be 10 MB or smaller.");
       return;
     }
     if (file && !["image/webp", "image/png", "image/jpeg", "application/pdf"].includes(file.type)) {
       setError("Upload a WebP, PNG, JPEG, or PDF file.");
-      return;
-    }
-    const current = items.find((item) => item.id === editingId);
-    if (form.isPublished && !file && !current?.imageUrl) {
-      setError("Upload a price list file before publishing this branch.");
       return;
     }
 
@@ -90,6 +82,8 @@ export default function AdminPriceLists() {
         address: form.address,
         sortOrder: Number(form.sortOrder),
         isPublished: Boolean(form.isPublished),
+        properties: form.properties,
+        specifications: form.specifications,
       });
       setEditingId(null);
       setFormOpen(false);
@@ -145,7 +139,7 @@ export default function AdminPriceLists() {
           <div className="mb-5 flex items-start justify-between gap-4">
             <div>
               <h3 id="price-list-form-heading" className="text-sm font-semibold text-slate-900">{editingId ? "Edit branch price list" : "Add a branch price list"}</h3>
-              <p className="mt-1 text-xs leading-5 text-slate-500">Upload a WebP, PNG, JPEG, or PDF file up to 10 MB.</p>
+              <p className="mt-1 text-xs leading-5 text-slate-500">Enter property pricing and specifications below. Uploading a price list file is optional.</p>
             </div>
             <button type="button" onClick={closeEditor} disabled={saving} className="rounded-md p-1.5 text-slate-500 hover:bg-slate-100" aria-label="Close form"><X size={17} /></button>
           </div>
@@ -161,6 +155,14 @@ export default function AdminPriceLists() {
             <div className="md:col-span-2">
               <label htmlFor="price-list-address" className="mb-1.5 block text-xs font-medium text-slate-700">Branch address</label>
               <input id="price-list-address" required maxLength={240} value={form.address} onChange={(event) => setForm((current) => ({ ...current, address: event.target.value }))} className="h-10 w-full rounded-md border border-slate-300 px-3 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/15" />
+            </div>
+            <div className="space-y-3 md:col-span-2">
+              <div className="flex items-center justify-between"><h4 className="text-sm font-semibold text-slate-800">Properties and pricing</h4><button type="button" onClick={() => setForm((current) => ({ ...current, properties: [...current.properties, Object.fromEntries(propertyFields.map(([key]) => [key, ""]))] }))} className="text-xs font-semibold text-blue-700">+ Add property</button></div>
+              {form.properties.map((property, index) => <fieldset key={index} className="grid gap-3 rounded-md border border-slate-200 p-3 sm:grid-cols-2 lg:grid-cols-3"><legend className="px-1 text-xs font-medium text-slate-500">Property {index + 1}</legend>{propertyFields.map(([key, label]) => <label key={key} className="text-xs text-slate-600">{label}<input value={property[key] || ""} onChange={(event) => setForm((current) => ({ ...current, properties: current.properties.map((row, rowIndex) => rowIndex === index ? { ...row, [key]: event.target.value } : row) }))} className="mt-1 h-9 w-full rounded border border-slate-300 px-2 text-sm" /></label>)}<button type="button" onClick={() => setForm((current) => ({ ...current, properties: current.properties.filter((_, rowIndex) => rowIndex !== index) }))} className="text-left text-xs text-rose-700">Remove property</button></fieldset>)}
+            </div>
+            <div className="space-y-3 md:col-span-2">
+              <div className="flex items-center justify-between"><h4 className="text-sm font-semibold text-slate-800">Shared specifications</h4><button type="button" onClick={() => setForm((current) => ({ ...current, specifications: [...current.specifications, { name: "", detail: "" }] }))} className="text-xs font-semibold text-blue-700">+ Add specification</button></div>
+              {form.specifications.map((specification, index) => <div key={index} className="grid gap-2 sm:grid-cols-[1fr_2fr_auto]"><input aria-label="Specification name" placeholder="Particular" value={specification.name} onChange={(event) => setForm((current) => ({ ...current, specifications: current.specifications.map((row, rowIndex) => rowIndex === index ? { ...row, name: event.target.value } : row) }))} className="h-9 rounded border border-slate-300 px-2 text-sm" /><input aria-label="Specification detail" placeholder="Specification" value={specification.detail} onChange={(event) => setForm((current) => ({ ...current, specifications: current.specifications.map((row, rowIndex) => rowIndex === index ? { ...row, detail: event.target.value } : row) }))} className="h-9 rounded border border-slate-300 px-2 text-sm" /><button type="button" onClick={() => setForm((current) => ({ ...current, specifications: current.specifications.filter((_, rowIndex) => rowIndex !== index) }))} className="text-xs text-rose-700">Remove</button></div>)}
             </div>
             <div className="md:col-span-2">
               <label htmlFor="price-list-file" className="mb-1.5 block text-xs font-medium text-slate-700">Price list file</label>

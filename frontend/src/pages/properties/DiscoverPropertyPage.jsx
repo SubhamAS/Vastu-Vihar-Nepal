@@ -172,7 +172,7 @@ export default function DicoverProperty({ onOpenContact }) {
 
   if (!property) {
     return (
-        <main className="min-h-screen bg-brand-pine p-10 text-white">
+        <main className="min-h-screen bg-brand p-10 text-white">
         <h1 className="text-3xl">Property not found</h1>
         <Link to="/" className="mt-4 inline-block underline">
           Back to properties
@@ -182,7 +182,7 @@ export default function DicoverProperty({ onOpenContact }) {
   }
 
   return (
-    <main className="min-h-screen bg-brand-pine text-white">
+    <main className="min-h-screen bg-brand text-white">
       <section className="relative h-[65vh] min-h-100">
         <img
           src={property.image}
@@ -195,22 +195,22 @@ export default function DicoverProperty({ onOpenContact }) {
           className="h-full w-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-linear-to-t from-brand-pine/95 via-brand-pine/25 to-brand-pine/20" />
+        <div className="absolute inset-0 bg-linear-to-t from-brand/95 via-brand/25 to-brand/20" />
 
         <Link
           to="/"
-          className="absolute left-6 top-24 inline-flex items-center gap-2 border border-white/30 bg-brand-pine/45 px-4 py-3 text-sm backdrop-blur-sm transition-colors hover:border-brand-gold hover:text-brand-champagne sm:left-10"
+          className="absolute left-6 top-24 inline-flex items-center gap-2 border border-white/30 bg-brand/45 px-4 py-3 text-sm backdrop-blur-sm transition-colors hover:border-highlight hover:text-brand-light sm:left-10"
         >
           <ArrowLeft size={18} />
           Back to properties
         </Link>
 
         <div className="absolute bottom-10 left-6 right-6 sm:left-12">
-          <p className="mb-3 text-xs uppercase tracking-[0.3em] text-brand-champagne text-shadow-brand-brass">
+          <p className="mb-3 text-xs uppercase tracking-[0.3em] text-brand-light text-shadow-border-dark">
             {property.type}
           </p>
 
-          <h1 className="font-serif text-5xl font-medium sm:text-7xl">{property.name}</h1>
+          <h1 className="font-display text-5xl font-medium sm:text-7xl">{property.name}</h1>
 
           <p className="mt-4 flex items-center gap-2 text-white/75">
             <MapPin size={16} />
@@ -220,7 +220,7 @@ export default function DicoverProperty({ onOpenContact }) {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-12 sm:py-20">
-        <p className="text-xs mb-10 uppercase tracking-[0.3em] text-brand-gold">
+        <p className="text-xs mb-10 uppercase tracking-[0.3em] text-highlight">
           Floor Plan
         </p>
         <img
@@ -240,7 +240,7 @@ export default function DicoverProperty({ onOpenContact }) {
               {/* About section */}
               <div>
                 <div className="flex items-center gap-4 border-b border-white/10 pb-5">
-                  <House size={30} className="text-brand-gold" />
+                  <House size={30} className="text-highlight" />
 
                   <div>
                     <p className="text-xs tracking-[0.25em] text-white/50">
@@ -253,7 +253,7 @@ export default function DicoverProperty({ onOpenContact }) {
                   </div>
                 </div>
 
-                <div className="h-0.75 w-20 bg-brand-gold" />
+                <div className="h-0.75 w-20 bg-highlight" />
 
                 <div className="mt-7">
                   <div className="bg-white/5 px-5 py-4">
@@ -280,7 +280,7 @@ export default function DicoverProperty({ onOpenContact }) {
 
               {/* Area Description */}
               <aside className="h-fit border border-white/10">
-                <h3 className="bg-brand-pine px-5 py-4 text-center text-lg font-semibold text-white">
+                <h3 className="bg-brand px-5 py-4 text-center text-lg font-semibold text-white">
                   Area Description
                 </h3>
 
@@ -308,7 +308,7 @@ export default function DicoverProperty({ onOpenContact }) {
         <button
           type="button"
           onClick={() => onOpenContact?.(property.name)}
-          className="mt-8 bg-brand-gold px-6 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-brand-forest transition-colors hover:bg-brand-champagne"
+          className="mt-8 bg-highlight px-6 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-layout-dark transition-colors hover:bg-brand-light"
         >
           Enquire about this property
         </button>

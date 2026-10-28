@@ -128,7 +128,7 @@ export default function Technology({ onOpenContact }) {
   };
 
   return (
-    <main className="min-h-screen overflow-hidden bg-brand-paper pt-20 text-brand-ink">
+    <main className="min-h-screen overflow-hidden bg-white pt-20 text-text">
       {/* HERO SECTION */}
       <section className="relative flex min-h-97.5 items-center justify-center overflow-hidden px-5 py-15 text-center text-white md:min-h-117.5">
         <img
@@ -140,16 +140,16 @@ export default function Technology({ onOpenContact }) {
           className="absolute inset-0 h-full w-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-linear-to-r from-brand-forest/85 via-brand-forest/65 to-brand-forest/35" />
+        <div className="absolute inset-0 bg-linear-to-r from-layout-dark/85 via-layout-dark/65 to-layout-dark/35" />
 
         <div className="relative z-10 mx-auto max-w-3xl">
-          <p className="mb-5 text-[10px] uppercase tracking-[0.45em] text-brand-gold md:text-xs">
+          <p className="mb-5 text-[10px] uppercase tracking-[0.45em] text-highlight md:text-xs">
             Vastu Vihar · Thoughtful Living
           </p>
 
-          <h1 className="font-serif text-5xl font-medium leading-[0.95] tracking-[-0.03em] sm:text-6xl md:text-8xl">
+          <h1 className="font-display text-5xl font-medium leading-[0.95] tracking-[-0.03em] sm:text-6xl md:text-8xl">
             Technology for
-            <span className="mt-2 block italic text-brand-gold">
+            <span className="mt-2 block italic text-highlight">
               Better Living
             </span>
           </h1>
@@ -160,7 +160,7 @@ export default function Technology({ onOpenContact }) {
             resilient.
           </p>
 
-          <div className="mx-auto mt-8 h-px w-20 bg-brand-gold" />
+          <div className="mx-auto mt-8 h-px w-20 bg-highlight" />
         </div>
       </section>
 
@@ -169,16 +169,16 @@ export default function Technology({ onOpenContact }) {
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 flex flex-col justify-between gap-5 md:mb-14 md:flex-row md:items-end">
             <div>
-              <p className="mb-3 text-[10px] uppercase tracking-[0.35em] text-brand-ochre">
+              <p className="mb-3 text-[10px] uppercase tracking-[0.35em] text-highlight-hover">
                 Building technology
               </p>
 
-              <h2 className="font-serif text-4xl font-light sm:text-5xl md:text-6xl">
+              <h2 className="font-display text-4xl font-light sm:text-5xl md:text-6xl">
                 Innovation, <span className="italic">Built In.</span>
               </h2>
             </div>
 
-            <p className="max-w-md text-sm leading-6 text-brand-muted">
+            <p className="max-w-md text-sm leading-6 text-muted">
               From self-healing concrete and insulated walls to solar-powered
               systems, discover technologies that improve durability, comfort,
               and energy efficiency.
@@ -206,14 +206,14 @@ export default function Technology({ onOpenContact }) {
                     aria-pressed={expandedId === amenity.id}
                     className={`group relative flex min-w-0 flex-col items-start justify-between overflow-hidden rounded-sm border p-4 text-left transition-all duration-300 lg:min-h-48 md:p-5 ${
                       isActive
-                        ? "border-brand-brass bg-brand-pine text-white shadow-lg"
+                        ? "border-border-dark bg-brand text-white shadow-lg"
                         : "border-[#deddd3] bg-white text-[#20251f] hover:border-[#c7a75f]"
                     }`}
                   >
                     <div className="flex w-full items-center justify-between">
                       <span
                         className={`text-[10px] tracking-widest ${
-                          isActive ? "text-brand-gold" : "text-[#969589]"
+                          isActive ? "text-highlight" : "text-[#969589]"
                         }`}
                       >
                         {amenity.number}
@@ -223,7 +223,7 @@ export default function Technology({ onOpenContact }) {
                         size={15}
                         className={`transition-transform duration-300 ${
                           isActive
-                            ? "-translate-y-0.5 translate-x-0.5 text-brand-gold"
+                            ? "-translate-y-0.5 translate-x-0.5 text-highlight"
                             : "text-[#aaa99e] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                         }`}
                       />
@@ -256,16 +256,16 @@ export default function Technology({ onOpenContact }) {
                     </div>
 
                     {isActive && (
-                      <span className="absolute bottom-0 left-0 h-0.5 w-full bg-brand-gold" />
+                      <span className="absolute bottom-0 left-0 h-0.5 w-full bg-highlight" />
                     )}
 
                     {/* Mobile details: displayed below the selected card */}
                     {expandedId === amenity.id && (
                       <div
-                        className="mt-5 border-t border-brand-gold/40 pt-4 lg:hidden"
+                        className="mt-5 border-t border-highlight/40 pt-4 lg:hidden"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <p className="text-[9px] uppercase tracking-widest text-brand-gold">
+                        <p className="text-[9px] uppercase tracking-widest text-highlight">
                           {amenity.category}
                         </p>
 
@@ -285,14 +285,14 @@ export default function Technology({ onOpenContact }) {
 
             {/* ACTIVE AMENITY DETAILS */}
             <div
-              className="relative hidden md:flex min-h-97.5 flex-col justify-between overflow-hidden rounded-xl bg-brand-pine p-7 text-white md:min-h-112.5 md:p-10 lg:sticky lg:top-28"
+              className="relative hidden md:flex min-h-97.5 flex-col justify-between overflow-hidden rounded-xl bg-brand p-7 text-white md:min-h-112.5 md:p-10 lg:sticky lg:top-28"
               aria-live="polite"
             >
-              <div className="pointer-events-none absolute -right-16 -top-16 size-64 rounded-full border border-brand-gold/10" />
+              <div className="pointer-events-none absolute -right-16 -top-16 size-64 rounded-full border border-highlight/10" />
 
               <div className="relative">
                 <div className="mb-8 flex items-start justify-between gap-4">
-                  <div className="flex size-20 items-center justify-center rounded-full border border-brand-gold/40 bg-white/5">
+                  <div className="flex size-20 items-center justify-center rounded-full border border-highlight/40 bg-white/5">
                     <img
                       key={activeAmenity.id}
                       src={`/Icons/${activeAmenity.icon}`}
@@ -302,27 +302,27 @@ export default function Technology({ onOpenContact }) {
                     />
                   </div>
 
-                  <span className="font-serif text-5xl text-white/15">
+                  <span className="font-display text-5xl text-white/15">
                     {activeAmenity.number}
                   </span>
                 </div>
 
-                <p className="mb-3 text-[10px] uppercase tracking-[0.3em] text-brand-gold">
+                <p className="mb-3 text-[10px] uppercase tracking-[0.3em] text-highlight">
                   {activeAmenity.category}
                 </p>
 
-                <h3 className="font-serif text-3xl font-light leading-tight sm:text-4xl md:text-5xl">
+                <h3 className="font-display text-3xl font-light leading-tight sm:text-4xl md:text-5xl">
                   {activeAmenity.name}
                 </h3>
 
-                <div className="my-6 h-px w-16 bg-brand-gold" />
+                <div className="my-6 h-px w-16 bg-highlight" />
 
                 <p className="max-w-lg text-sm leading-7 text-white/70 md:text-base">
                   {activeAmenity.description}
                 </p>
 
                 {expandedId === activeAmenity.id && (
-                  <p className="mt-4 flex items-center gap-2 text-xs text-brand-gold">
+                  <p className="mt-4 flex items-center gap-2 text-xs text-highlight">
                     <Check size={15} />
                     Selected technology
                   </p>
@@ -332,7 +332,7 @@ export default function Technology({ onOpenContact }) {
               <button
                 type="button"
                 onClick={handleContact}
-                className="relative mt-10 inline-flex w-fit items-center gap-3 border-b border-brand-gold/60 pb-2 text-[10px] font-medium uppercase tracking-[0.2em] transition-colors hover:text-brand-gold"
+                className="relative mt-10 inline-flex w-fit items-center gap-3 border-b border-highlight/60 pb-2 text-[10px] font-medium uppercase tracking-[0.2em] transition-colors hover:text-highlight"
               >
                 Enquire about our technology
                 <ArrowUpRight size={15} />
@@ -349,18 +349,18 @@ export default function Technology({ onOpenContact }) {
       </section>
 
       {/* FINAL CTA */}
-      <section className="relative overflow-hidden bg-brand-pine px-5 py-20 text-center text-white md:py-28">
+      <section className="relative overflow-hidden bg-brand px-5 py-20 text-center text-white md:py-28">
         <div className="pointer-events-none absolute -left-20 -top-24 size-80 rounded-full border border-white/5" />
         <div className="pointer-events-none absolute -right-20 -bottom-24 size-80 rounded-full border border-white/5" />
 
         <div className="relative mx-auto max-w-2xl">
-          <p className="mb-4 text-[10px] uppercase tracking-[0.35em] text-brand-gold">
+          <p className="mb-4 text-[10px] uppercase tracking-[0.35em] text-highlight">
             Your next chapter begins here
           </p>
 
-          <h2 className="font-serif text-4xl font-light sm:text-5xl md:text-6xl">
+          <h2 className="font-display text-4xl font-light sm:text-5xl md:text-6xl">
             Find your kind of
-            <span className="block italic text-brand-gold">
+            <span className="block italic text-highlight">
               everyday luxury.
             </span>
           </h2>
@@ -373,7 +373,7 @@ export default function Technology({ onOpenContact }) {
           <button
             type="button"
             onClick={handleContact}
-            className="mt-8 inline-flex items-center gap-4 rounded-full bg-brand-gold px-7 py-4 text-xs font-semibold uppercase tracking-widest text-[#20251f] transition-colors hover:bg-white"
+            className="mt-8 inline-flex items-center gap-4 rounded-full bg-highlight px-7 py-4 text-xs font-semibold uppercase tracking-widest text-[#20251f] transition-colors hover:bg-white"
           >
             Enquire Now
             <ArrowUpRight size={16} />

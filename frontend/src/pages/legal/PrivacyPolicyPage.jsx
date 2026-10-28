@@ -6,7 +6,7 @@ const updated = "26 October 2026";
 function Section({ title, children }) {
   return (
     <section>
-      <h2 className="mb-3 font-serif text-2xl font-medium text-brand-pine sm:text-3xl">
+      <h2 className="mb-3 font-display text-2xl font-medium text-brand sm:text-3xl">
         {title}
       </h2>
       <div className="space-y-3">{children}</div>
@@ -33,7 +33,7 @@ export default function PrivacyPolicyPage() {
           Our Nepal offices are at Shop No-8, 2nd Floor, Rungta Mall, Adarsh
           Nagar, Birgunj - 44300, and 211, 2nd Floor, Hanuman Center, Mukti
           Chowk, Birtamode, Jhapa. You can contact us at{" "}
-          <a className="text-brand-pine underline" href="mailto:info@vastuvihar.org">
+          <a className="text-brand underline" href="mailto:info@vastuvihar.org">
             info@vastuvihar.org
           </a>.
         </p>
@@ -44,29 +44,29 @@ export default function PrivacyPolicyPage() {
           We collect the information needed to manage a property enquiry. The
           contact form currently asks for:
         </p>
-        <div className="overflow-x-auto rounded-sm border border-brand-line">
+        <div className="overflow-x-auto rounded-sm border border-border-light">
           <table className="w-full min-w-[600px] border-collapse text-left text-sm">
-            <thead className="bg-brand-forest text-white">
+            <thead className="bg-layout-dark text-white">
               <tr>
                 <th scope="col" className="px-4 py-3 font-semibold">Information</th>
                 <th scope="col" className="px-4 py-3 font-semibold">Why we use it</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-brand-line bg-white/60">
+            <tbody className="divide-y divide-border-light bg-white/60">
               <tr>
-                <th scope="row" className="px-4 py-3 font-medium text-brand-pine">Name and phone number</th>
+                <th scope="row" className="px-4 py-3 font-medium text-brand">Name and phone number</th>
                 <td className="px-4 py-3">To identify your enquiry and contact you about it.</td>
               </tr>
               <tr>
-                <th scope="row" className="px-4 py-3 font-medium text-brand-pine">Email address (optional)</th>
+                <th scope="row" className="px-4 py-3 font-medium text-brand">Email address (optional)</th>
                 <td className="px-4 py-3">To reply to your enquiry by email.</td>
               </tr>
               <tr>
-                <th scope="row" className="px-4 py-3 font-medium text-brand-pine">Property selection</th>
+                <th scope="row" className="px-4 py-3 font-medium text-brand">Property selection</th>
                 <td className="px-4 py-3">To understand which property or model you are asking about.</td>
               </tr>
               <tr>
-                <th scope="row" className="px-4 py-3 font-medium text-brand-pine">Enquiry date and status</th>
+                <th scope="row" className="px-4 py-3 font-medium text-brand">Enquiry date and status</th>
                 <td className="px-4 py-3">To organize and follow up on submitted enquiries.</td>
               </tr>
             </tbody>
@@ -166,7 +166,7 @@ export default function PrivacyPolicyPage() {
           We do not control their content or privacy practices. We may update
           this notice when our site or data practices change; the revision date
           above shows when it was last updated. For website-use terms, read our{" "}
-          <Link className="text-brand-pine underline" to="/terms-and-conditions">
+          <Link className="text-brand underline" to="/terms-and-conditions">
             Terms &amp; Conditions
           </Link>.
         </p>
@@ -176,11 +176,11 @@ export default function PrivacyPolicyPage() {
         <p>
           For questions, access or correction requests, or other privacy
           concerns, contact our privacy desk at{" "}
-          <a className="text-brand-pine underline" href="mailto:info@vastuvihar.org">
+          <a className="text-brand underline" href="mailto:info@vastuvihar.org">
             info@vastuvihar.org
           </a>{" "}
           or call{" "}
-          <a className="text-brand-pine underline" href="tel:+9779802591815">
+          <a className="text-brand underline" href="tel:+9779802591815">
             +977 98025 91815
           </a>. You can also write to either Nepal office listed in Section 1.
         </p>

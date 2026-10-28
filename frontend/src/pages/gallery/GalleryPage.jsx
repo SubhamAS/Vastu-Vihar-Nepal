@@ -133,15 +133,15 @@ export default function Gallery() {
   };
 
   return (
-    <main className="min-h-screen bg-brand-paper pb-20 pt-32 text-brand-ink">
+    <main className="min-h-screen bg-white pb-20 pt-32 text-text">
       <section className="mx-auto max-w-7xl px-5 sm:px-8">
         {/* Heading */}
         <div className="mb-10 text-center">
-          <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-brand-ochre">
+          <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-highlight-hover">
             Vastu Vihar
           </p>
 
-          <h1 className="font-serif text-5xl font-medium text-brand-pine sm:text-6xl">
+          <h1 className="font-display text-5xl font-medium text-brand sm:text-6xl">
             Our Gallery
           </h1>
 
@@ -163,8 +163,8 @@ export default function Gallery() {
               }}
               className={`rounded-full border px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition ${
                 activeCategory === category
-                  ? "border-brand-pine bg-brand-pine text-white"
-                  : "border-[#d7d4c8] bg-white text-[#34423a] hover:border-brand-brass"
+                  ? "border-brand bg-brand text-white"
+                  : "border-[#d7d4c8] bg-white text-[#34423a] hover:border-border-dark"
               }`}
             >
               {category}

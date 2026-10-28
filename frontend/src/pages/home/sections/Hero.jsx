@@ -161,7 +161,7 @@ export default function Hero() {
     <section
       id="home"
       ref={sectionRef}
-      className="relative isolate h-svh min-h-155 w-full overflow-hidden bg-brand-forest text-white"
+      className="relative isolate h-svh min-h-155 w-full overflow-hidden bg-layout-dark text-white"
     >
       {/* Property footage */}
       <img
@@ -184,19 +184,19 @@ export default function Hero() {
         />
       )}
 
-      <div className="pointer-events-none absolute inset-0 z-1 bg-linear-to-r from-brand-forest/70 via-brand-forest/25 to-black/10" />
-      <div className="pointer-events-none absolute inset-0 z-1 bg-linear-to-t from-brand-forest/50 via-transparent to-black/10" />
+      <div className="pointer-events-none absolute inset-0 z-1 bg-linear-to-r from-layout-dark/70 via-layout-dark/25 to-black/10" />
+      <div className="pointer-events-none absolute inset-0 z-1 bg-linear-to-t from-layout-dark/50 via-transparent to-black/10" />
 
       {/* Hero content */}
       <div className="vv-hero-heading absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center md:items-start md:px-[10%] md:text-left">
-        <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-champagne sm:text-xs">
+        <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-light sm:text-xs">
           A new perspective on living
         </p>
 
-        <h1 className="max-w-5xl text-5xl font-normal leading-[0.98] tracking-[-0.045em] sm:text-7xl lg:text-8xl text-brand-pine xl:text-[108px]">
+        <h1 className="max-w-5xl text-5xl font-normal leading-[0.98] tracking-[-0.045em] sm:text-7xl lg:text-8xl xl:text-[108px]">
           Where life
           <br />
-          <span className="font-serif italic text-brand-gold font-light">
+          <span className="font-serif italic font-extralight">
             finds its space.
           </span>
         </h1>
@@ -207,7 +207,7 @@ export default function Hero() {
 
         <Link
           to="/models"
-          className="pointer-events-auto mt-9 inline-flex items-center gap-5 rounded-sm border border-white/60 bg-brand-pine/75 px-6 py-4 text-[10px] font-semibold uppercase tracking-[0.16em] backdrop-blur-md transition duration-300 hover:border-brand-champagne hover:bg-brand-forest sm:text-xs"
+          className="pointer-events-auto mt-9 inline-flex items-center gap-5 rounded-sm border border-white/60 bg-brand/75 px-6 py-4 text-[10px] font-semibold uppercase tracking-[0.16em] backdrop-blur-md transition duration-300 hover:border-brand-light hover:bg-layout-dark sm:text-xs"
         >
           Explore our residences
           <ArrowUpRight size={17} />
@@ -224,10 +224,6 @@ export default function Hero() {
             A place to call home.
           </h2>
         </div>
-
-        <p className="max-w-64 text-left text-[10px] leading-4 tracking-[0.12em] text-white/75 sm:max-w-44 sm:text-right sm:tracking-[0.3em]">
-          Discover thoughtfully designed spaces for modern living.
-        </p>
       </div>
 
       {/* Scroll prompt */}

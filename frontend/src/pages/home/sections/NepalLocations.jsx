@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./NepalLocations.css";
+import { Link } from "react-router-dom";
 
 const locations = [
   {
@@ -79,12 +80,12 @@ export default function NepalLocations() {
     if (!mapContainerRef.current) return undefined;
 
     const map = L.map(mapContainerRef.current, {
-      scrollWheelZoom: false,
+      scrollWheelZoom: true,
       zoomControl: true,
     }).setView([27, 86], 5.5);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
+      maxZoom: 16,
     }).addTo(map);
 
     locations.forEach((location) => {
@@ -110,7 +111,7 @@ export default function NepalLocations() {
     <section
       id="locations"
       aria-labelledby="nepal-locations-title"
-      className="w-full overflow-hidden bg-white pb-8 pt-16 text-[#171717] sm:pt-20"
+      className="w-full overflow-hidden bg-white pb-8 text-[#171717]"
     >
       <div className="mx-auto flex max-w-360 flex-col gap-5 px-5 pb-7 sm:flex-row sm:items-end sm:justify-between sm:px-8 lg:px-12">
         <div>
@@ -124,19 +125,19 @@ export default function NepalLocations() {
             Find our offices and project sites across Nepal.
           </p>
         </div>
-        <a
-          href="/models"
+        <Link
+          to={"models"}
           className="inline-flex w-fit items-center gap-3 rounded-full bg-[#d9272e] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_8px_22px_rgba(217,39,46,0.22)] transition-colors hover:bg-[#b91f27] focus-visible:outline  focus-visible:outline-offset-4 focus-visible:outline-[#d9272e]"
         >
           Explore our homes
           <ArrowRight size={17} />
-        </a>
+        </Link>
       </div>
 
-      <div className="vv-nepal-map-shell relative h-[clamp(430px,58vw,790px)] w-full object-center">
+      <div className="vv-nepal-map-shell isolate relative mx-4 mb-6 mt-2 h-[clamp(430px,58vw,790px)] w-auto overflow-hidden rounded-3xl border border-slate-200 shadow-[0_18px_55px_rgba(16,41,76,0.14)] sm:mx-8 lg:mx-12">
         <div
           ref={mapContainerRef}
-          className="vv-nepal-map absolute object-center lg:left-45 lg:w-300 inset-0"
+          className="vv-nepal-map absolute inset-0"
           role="region"
           aria-label="Interactive map of Nepal showing Vastu Vihar locations in Birgunj and Birtamode"
         />
@@ -145,3 +146,4 @@ export default function NepalLocations() {
     </section>
   );
 }
+

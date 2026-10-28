@@ -6,7 +6,7 @@ const updated = "26 October 2026";
 function Section({ title, children }) {
   return (
     <section>
-      <h2 className="mb-3 font-serif text-2xl font-medium text-brand-pine sm:text-3xl">
+      <h2 className="mb-3 font-display text-2xl font-medium text-brand sm:text-3xl">
         {title}
       </h2>
       <div className="space-y-3">{children}</div>
@@ -52,7 +52,7 @@ export default function TermsPage() {
           enquiry. We may use the details you provide to respond to your
           request, discuss the property you selected, and send an email
           confirming that we received your enquiry if you provided an email
-          address. See our <Link className="text-brand-pine underline" to="/privacy-policy">Privacy Policy</Link> for details about handling that information.
+          address. See our <Link className="text-brand underline" to="/privacy-policy">Privacy Policy</Link> for details about handling that information.
         </p>
       </Section>
 
@@ -108,11 +108,11 @@ export default function TermsPage() {
       <Section title="9. Contact us">
         <p>
           Questions about these terms can be sent to{" "}
-          <a className="text-brand-pine underline" href="mailto:info@vastuvihar.org">
+          <a className="text-brand underline" href="mailto:info@vastuvihar.org">
             info@vastuvihar.org
           </a>{" "}
           or by phone at{" "}
-          <a className="text-brand-pine underline" href="tel:+9779802591815">
+          <a className="text-brand underline" href="tel:+9779802591815">
             +977 98025 91815
           </a>.
         </p>

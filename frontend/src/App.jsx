@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 // import { Analytics } from "@vercel/analytics/react";
 import Navbar from "./Components/Navbar/Navbar";
@@ -57,6 +57,7 @@ const App = () => {
     normalizedPathname === "/admin" || normalizedPathname.startsWith("/admin/");
   const isKnownRoute =
     knownRoutes.includes(normalizedPathname) ||
+    /^\/price-list\/[^/]+$/.test(normalizedPathname) ||
     /^\/properties\/[^/]+$/.test(normalizedPathname);
   const loadingClassName = isAdminPath
     ? "min-h-screen bg-slate-50"
@@ -68,6 +69,28 @@ const App = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const footerRef = useRef(null);
+
+  useLayoutEffect(() => {
+    if (isAdminPath || !footerRef.current) return undefined;
+
+    const footer = footerRef.current;
+    const updateFooterHeight = () => {
+      document.documentElement.style.setProperty(
+        "--site-footer-height",
+        `${footer.getBoundingClientRect().height}px`,
+      );
+    };
+
+    updateFooterHeight();
+    const observer = new ResizeObserver(updateFooterHeight);
+    observer.observe(footer);
+
+    return () => {
+      observer.disconnect();
+      document.documentElement.style.removeProperty("--site-footer-height");
+    };
+  }, [isAdminPath]);
 
   const handleOpenContact = useCallback((propertyName = "") => {
     setSelectedProperty(propertyName);
@@ -132,23 +155,24 @@ const App = () => {
   }, [isContactOpen, handleCloseContact]);
 
   return (
-    <div>
+    <div className="relative isolate">
       <ScrollTop />
       {/* <Analytics /> */}
-      {!isAdminPath && <Navbar onOpenContact={handleOpenContact} />}
-      <Suspense
-        fallback={
-          <Loading
-            className={loadingClassName}
-            label={
-              isAdminPath
-                ? "Loading admin workspace..."
-                : "Loading Vastu Vihar..."
-            }
-          />
-        }
-      >
-        <Routes>
+      <div className="relative z-10 mb-[var(--site-footer-height,0px)] bg-white">
+        {!isAdminPath && <Navbar onOpenContact={handleOpenContact} />}
+        <Suspense
+          fallback={
+            <Loading
+              className={loadingClassName}
+              label={
+                isAdminPath
+                  ? "Loading admin workspace..."
+                  : "Loading Vastu Vihar..."
+              }
+            />
+          }
+        >
+          <Routes>
           <Route path="/admin">
             <Route index element={<AdminLogin />} />
             <Route element={<AdminLayout />}>
@@ -172,6 +196,7 @@ const App = () => {
           <Route path="/career" element={<CareerPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/price-list" element={<PriceListPage />} />
+          <Route path="/price-list/:branchSlug" element={<PriceListPage />} />
           <Route path="/contact" element={<OfficeContactPage />} />
           <Route path="/contact/office" element={<OfficeContactPage />} />
           <Route path="/contact/site" element={<SiteContactPage />} />
@@ -183,9 +208,10 @@ const App = () => {
             element={<DiscoverPropertyPage onOpenContact={handleOpenContact} />}
           />
           <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
-      {!isAdminPath && <Footer />}
+          </Routes>
+        </Suspense>
+      </div>
+      {!isAdminPath && <Footer ref={footerRef} />}
       {!isAdminPath && <WhatsAppButton />}
       {/* <HelpDesk /> */}
       {isContactOpen && (

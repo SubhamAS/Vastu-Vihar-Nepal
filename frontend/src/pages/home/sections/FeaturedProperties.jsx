@@ -110,7 +110,7 @@ export default function FeaturedProperties() {
       }
 
       track.scrollTo({ left: cards[nextIndex].offsetLeft, behavior: "smooth" });
-    }, 5000);
+    }, 2000);
 
     return () => window.clearInterval(timer);
   }, [paused]);
@@ -151,23 +151,23 @@ export default function FeaturedProperties() {
   return (
     <section
       id="projects"
-      className="relative w-full overflow-hidden bg-brand-paper px-5 py-20 text-brand-ink sm:px-8 sm:py-24 lg:px-16 lg:py-28"
+      className="relative w-full overflow-hidden bg-white px-5 py-20 text-text sm:px-8 sm:py-24 lg:px-16 lg:py-28"
     >
       {/* Section heading */}
       <div className="mx-auto mb-11 grid max-w-7xl gap-5 sm:mb-14 md:grid-cols-[1fr_0.7fr] md:items-end">
         <div>
-          <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-brand-ochre sm:text-[11px]">
+          <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-highlight-hover sm:text-[11px]">
             Find your place
           </p>
           <h2 className="max-w-2xl text-4xl font-light leading-[1.05] tracking-[-0.04em] sm:text-5xl md:text-6xl lg:text-7xl">
-            <span className="bg-brand-pine text-brand-gold">Homes</span> with
+            <span className="bg-brand text-highlight">Homes</span> with
             room
-            <span className="block font-serif italic text-brand-pine">
-              to become <span className="bg-brand-gold/80">yours.</span>
+            <span className="block font-serif italic text-brand">
+              to become <span className="bg-highlight/80">yours.</span>
             </span>
           </h2>
         </div>
-        <p className="max-w-md text-sm leading-7 text-brand-muted md:justify-self-end md:pb-1 md:text-base">
+        <p className="max-w-md text-sm leading-7 text-muted md:justify-self-end md:pb-1 md:text-base">
           Explore a collection of thoughtfully planned residences, each shaped
           around a different way of living.
         </p>
@@ -189,7 +189,7 @@ export default function FeaturedProperties() {
               type="button"
               onClick={() => moveCarousel(-1)}
               aria-label="Previous properties"
-              className="h-11 w-90 relative top-60 hidden md:grid mr-2 place-items-center border rounded-full border-brand-line text-brand-pine transition-colors hover:bg-brand-pine hover:text-brand-paper focus-visible:outline-brand-brass"
+              className="h-11 w-90 relative top-60 hidden md:grid mr-2 place-items-center border rounded-full border-border-light text-brand transition-colors hover:bg-brand hover:text-white focus-visible:outline-border-dark"
             >
               <ArrowUpRight size={18} className="rotate-225" />
             </button>
@@ -208,7 +208,7 @@ export default function FeaturedProperties() {
                   aria-hidden={
                     index < properties.length || index >= properties.length * 2
                   }
-                  className="group w-[min(88vw,24rem)] shrink-0 snap-start overflow-hidden border border-brand-line bg-white transition-shadow duration-300 hover:shadow-[0_18px_44px_rgba(24,56,47,0.12)] sm:w-[calc((100%-1.25rem)/2)] xl:w-[calc((100%-2.5rem)/3)]"
+                  className="group w-[min(88vw,24rem)] shrink-0 snap-start overflow-hidden border border-border-light bg-white transition-shadow duration-300 hover:shadow-[0_18px_44px_rgba(24,56,47,0.12)] sm:w-[calc((100%-1.25rem)/2)] xl:w-[calc((100%-2.5rem)/3)]"
                 >
                   <div className="relative h-80 overflow-hidden sm:h-96">
                     <img
@@ -228,26 +228,26 @@ export default function FeaturedProperties() {
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/45 via-transparent to-black/10" />
 
-                    <span className="absolute left-4 top-4 bg-brand-paper/95 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.14em] text-brand-pine sm:left-5 sm:top-5">
+                    <span className="absolute left-4 top-4 bg-white/95 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.14em] text-brand sm:left-5 sm:top-5">
                       {property.type}
                     </span>
                   </div>
                   <div className="p-5 sm:p-6">
-                    <p className="mb-3 flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.16em] text-brand-muted">
-                      <MapPin size={13} className="text-brand-ochre" />
+                    <p className="mb-3 flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
+                      <MapPin size={13} className="text-highlight-hover" />
                       {property.location}
-                      <span className="mx-1 h-1 w-1 rounded-full bg-brand-brass" />
+                      <span className="mx-1 h-1 w-1 rounded-full bg-border-dark" />
                       {property.bhk}
                     </p>
-                    <h3 className="font-serif text-2xl font-medium leading-tight text-brand-pine sm:text-3xl">
+                    <h3 className="font-display text-2xl font-medium leading-tight text-brand sm:text-3xl">
                       {property.name}
                     </h3>
-                    <p className="mt-3 max-w-sm text-sm leading-6 text-brand-muted">
+                    <p className="mt-3 max-w-sm text-sm leading-6 text-muted">
                       {property.description}
                     </p>
                     <Link
                       to={`/properties/${property.id}`}
-                      className="mt-5 inline-flex items-center gap-3 border-b border-brand-brass pb-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-pine transition-colors hover:text-brand-ochre"
+                      className="mt-5 inline-flex items-center gap-3 border-b border-border-dark pb-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-brand transition-colors hover:text-highlight-hover"
                     >
                       Discover property
                       <ArrowUpRight size={15} />
@@ -261,7 +261,7 @@ export default function FeaturedProperties() {
             type="button"
             onClick={() => moveCarousel(1)}
             aria-label="Next properties"
-            className="md:grid h-11 w-90 relative hidden top-60 ml-2 place-items-center border rounded-full border-brand-line text-brand-pine transition-colors hover:bg-brand-pine hover:text-brand-paper focus-visible:outline-brand-brass"
+            className="md:grid h-11 w-90 relative hidden top-60 ml-2 place-items-center border rounded-full border-border-light text-brand transition-colors hover:bg-brand hover:text-white focus-visible:outline-border-dark"
           >
             <ArrowUpRight size={18} className="rotate-45" />
           </button>
@@ -271,7 +271,7 @@ export default function FeaturedProperties() {
             type="button"
             onClick={() => moveCarousel(-1)}
             aria-label="Previous properties"
-            className="grid h-11 w-11 place-items-center border rounded-full border-brand-line text-brand-pine transition-colors hover:bg-brand-pine hover:text-brand-paper focus-visible:outline-brand-brass"
+            className="grid h-11 w-11 place-items-center border rounded-full border-border-light text-brand transition-colors hover:bg-brand hover:text-white focus-visible:outline-border-dark"
           >
             <ArrowUpRight size={18} className="rotate-225" />
           </button>
@@ -279,7 +279,7 @@ export default function FeaturedProperties() {
             type="button"
             onClick={() => moveCarousel(1)}
             aria-label="Next properties"
-            className="grid h-11 w-11 place-items-center border rounded-full border-brand-line text-brand-pine transition-colors hover:bg-brand-pine hover:text-brand-paper focus-visible:outline-brand-brass"
+            className="grid h-11 w-11 place-items-center border rounded-full border-border-light text-brand transition-colors hover:bg-brand hover:text-white focus-visible:outline-border-dark"
           >
             <ArrowUpRight size={18} className="rotate-45" />
           </button>
@@ -287,7 +287,7 @@ export default function FeaturedProperties() {
       </div>
 
       {/* Bottom label */}
-      <div className="mx-auto mt-10 flex max-w-7xl flex-col gap-2 border-t border-[#d8d5c9] pt-5 text-[10px] uppercase tracking-[0.16em] text-brand-muted sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto mt-10 flex max-w-7xl flex-col gap-2 border-t border-[#d8d5c9] pt-5 text-[10px] uppercase tracking-[0.16em] text-muted sm:flex-row sm:items-center sm:justify-between">
         <span>Explore the collection</span>
         <span>{String(properties.length).padStart(2, "0")} properties</span>
       </div>

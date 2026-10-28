@@ -39,7 +39,7 @@ export default function NavbarDropdown({
       </div>
 
       {/* First dropdown */}
-      <ul className="invisible absolute left-0 top-full z-50 min-w-56 translate-y-2 border border-brand-line bg-brand-paper p-2 text-brand-ink opacity-0 shadow-[0_16px_40px_rgba(15,23,42,0.14)] transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 motion-reduce:transition-none">
+      <ul className="invisible absolute left-0 top-full z-50 min-w-56 translate-y-2 border border-border-light bg-white p-2 text-text opacity-0 shadow-[0_16px_40px_rgba(15,23,42,0.14)] transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 motion-reduce:transition-none">
         {item.children?.map((child) => (
           <li
             key={child.to || child.label}
@@ -50,7 +50,7 @@ export default function NavbarDropdown({
               <Link
                   to={child.to}
                   onClick={closeMenu}
-                  className="flex-1 px-4 py-3 text-[13px] font-medium normal-case tracking-normal text-[#3f4c44] transition-colors hover:text-brand-ochre"
+                  className="flex-1 px-4 py-3 text-[13px] font-medium normal-case tracking-normal text-[#3f4c44] transition-colors hover:text-highlight-hover"
                 >
                   {child.label}
                 </Link>
@@ -70,14 +70,14 @@ export default function NavbarDropdown({
 
             {/* Nested dropdown */}
             {child.children?.length > 0 && (
-              <ul className="invisible absolute left-full top-0 z-50 ml-1 min-w-48 -translate-x-2 border border-brand-line bg-brand-paper p-2 text-brand-ink opacity-0 shadow-[0_16px_40px_rgba(15,23,42,0.14)] transition-all duration-200 group-hover/sub:visible group-hover/sub:translate-x-0 group-hover/sub:opacity-100 group-focus-within/sub:visible group-focus-within/sub:translate-x-0 group-focus-within/sub:opacity-100 motion-reduce:transition-none">
+              <ul className="invisible absolute left-full top-0 z-50 ml-1 min-w-48 -translate-x-2 border border-border-light bg-white p-2 text-text opacity-0 shadow-[0_16px_40px_rgba(15,23,42,0.14)] transition-all duration-200 group-hover/sub:visible group-hover/sub:translate-x-0 group-hover/sub:opacity-100 group-focus-within/sub:visible group-focus-within/sub:translate-x-0 group-focus-within/sub:opacity-100 motion-reduce:transition-none">
                 {child.children.map((subChild) => (
                   <li key={subChild.to || subChild.label}>
                     {subChild.to ? (
                       <Link
                         to={subChild.to}
                         onClick={closeMenu}
-                        className="block px-4 py-3 text-[13px] font-medium normal-case tracking-normal text-[#3f4c44] transition-colors hover:bg-white hover:text-brand-ochre"
+                        className="block px-4 py-3 text-[13px] font-medium normal-case tracking-normal text-[#3f4c44] transition-colors hover:bg-white hover:text-highlight-hover"
                       >
                         {subChild.label}
                       </Link>

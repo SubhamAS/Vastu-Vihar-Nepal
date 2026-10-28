@@ -48,22 +48,22 @@ export default function ContactModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="contact-title"
-        className="relative my-auto w-full max-w-lg border border-brand-line bg-brand-paper p-6 text-brand-ink shadow-2xl sm:p-9"
+        className="relative my-auto w-full max-w-lg border border-border-light bg-white p-6 text-text shadow-2xl sm:p-9"
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close contact form"
-          className="absolute right-4 top-4 p-2 transition-colors hover:text-brand-ochre"
+          className="absolute right-4 top-4 p-2 transition-colors hover:text-highlight-hover"
         >
           <X size={22} />
         </button>
 
         {formSubmitted ? (
           <div className="contact-confirmation-enter py-10 text-center">
-            <CheckCircle2 size={48} className="mx-auto mb-5 text-brand-ochre" />
+            <CheckCircle2 size={48} className="mx-auto mb-5 text-highlight-hover" />
 
-            <h2 className="font-serif text-3xl">Enquiry received</h2>
+            <h2 className="font-display text-3xl">Enquiry received</h2>
 
             <p className="mt-3 text-sm leading-6 text-neutral-600">
               We have saved your enquiry. Our team will get in touch soon.
@@ -72,23 +72,23 @@ export default function ContactModal({
             <button
               type="button"
               onClick={onClose}
-              className="mt-7 bg-brand-pine px-6 py-3 text-xs font-semibold tracking-widest text-white transition-colors hover:bg-brand-forest"
+              className="mt-7 bg-brand px-6 py-3 text-xs font-semibold tracking-widest text-white transition-colors hover:bg-layout-dark"
             >
               CLOSE
             </button>
           </div>
         ) : (
           <>
-            <span className="text-[10px] font-semibold tracking-[3px] text-brand-ochre">
+            <span className="text-[10px] font-semibold tracking-[3px] text-highlight-hover">
               VASTU VIHAR NEPAL
             </span>
 
             <h2
               id="contact-title"
-              className="mt-4 font-serif text-4xl leading-tight text-brand-pine"
+              className="mt-4 font-display text-4xl leading-tight text-brand"
             >
               Let's find your
-              <span className="block text-brand-ochre">perfect home.</span>
+              <span className="block text-highlight-hover">perfect home.</span>
             </h2>
 
             <p className="mt-4 text-sm leading-6 text-neutral-600">
@@ -112,7 +112,7 @@ export default function ContactModal({
                   required
                   autoComplete="name"
                   placeholder="Enter your name"
-                  className="w-full border border-[#d7d4c8] bg-white px-4 py-3 text-sm outline-none focus:border-brand-pine"
+                  className="w-full border border-[#d7d4c8] bg-white px-4 py-3 text-sm outline-none focus:border-brand"
                 />
               </div>
 
@@ -134,7 +134,7 @@ export default function ContactModal({
                   autoComplete="tel"
                   pattern="[0-9+\-\s()]{7,20}"
                   placeholder="Enter your phone number"
-                  className="w-full border border-[#d7d4c8] bg-white px-4 py-3 text-sm outline-none focus:border-brand-pine"
+                  className="w-full border border-[#d7d4c8] bg-white px-4 py-3 text-sm outline-none focus:border-brand"
                 />
               </div>
 
@@ -154,7 +154,7 @@ export default function ContactModal({
                   onChange={updateField}
                   autoComplete="email"
                   placeholder="Enter your email (optional)"
-                  className="w-full border border-[#d7d4c8] bg-white px-4 py-3 text-sm outline-none focus:border-brand-pine"
+                  className="w-full border border-[#d7d4c8] bg-white px-4 py-3 text-sm outline-none focus:border-brand"
                 />
               </div>
 
@@ -171,7 +171,7 @@ export default function ContactModal({
                   name="property"
                   value={form.property}
                   onChange={updateField}
-                  className="w-full border border-[#d7d4c8] bg-white px-4 py-3 text-sm outline-none focus:border-brand-pine"
+                  className="w-full border border-[#d7d4c8] bg-white px-4 py-3 text-sm outline-none focus:border-brand"
                 >
                   <option value="">Select a property or category</option>
                   {[
@@ -199,7 +199,7 @@ export default function ContactModal({
               <button
                 type="submit"
                 disabled={isSending || isAnimating}
-                className="flex w-full items-center justify-between bg-brand-pine px-5 py-4 text-xs font-semibold tracking-[1.5px] text-white active:scale-95 transition-colors hover:bg-brand-forest disabled:cursor-not-allowed disabled:opacity-60"
+                className="flex w-full items-center justify-between bg-brand px-5 py-4 text-xs font-semibold tracking-[1.5px] text-white active:scale-95 transition-colors hover:bg-layout-dark disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {isSending || isAnimating
                   ? "SENDING ENQUIRY..."

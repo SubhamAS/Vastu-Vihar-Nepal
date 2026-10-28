@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
@@ -39,9 +40,9 @@ const socialLinks = [
   },
 ];
 
-export default function Footer() {
+const Footer = forwardRef(function Footer(_, ref) {
   return (
-    <footer className="bg-brand-forest text-white">
+    <footer ref={ref} className="fixed inset-x-0 bottom-0 z-0 bg-layout-dark text-white">
       <div className="mx-auto max-w-[1800px] px-6 pb-8 pt-12 sm:px-10 lg:px-16 lg:pt-16">
         {/* Main footer */}
         <div className="grid grid-cols-1 gap-10 border-b border-white/10 pb-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.7fr_1fr_1.3fr] lg:gap-10 xl:gap-16">
@@ -57,7 +58,7 @@ export default function Footer() {
               />
             </Link>
 
-            <p className="mt-5 text-xs font-medium tracking-[0.08em] text-brand-gold">
+            <p className="mt-5 text-xs font-medium tracking-[0.08em] text-highlight">
               Building more than homes.
             </p>
 
@@ -78,7 +79,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   aria-label={label}
                   title={label}
-                  className="flex size-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-brand-gold hover:text-brand-gold"
+                  className="flex size-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-highlight hover:text-highlight"
                 >
                   <Icon size={18} aria-hidden="true" />
                 </a>
@@ -89,7 +90,7 @@ export default function Footer() {
               href="https://vastuvihar.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 border-b border-brand-gold/60 pb-2 text-xs uppercase tracking-widest transition-colors hover:text-brand-gold"
+              className="mt-6 inline-flex items-center gap-2 border-b border-highlight/60 pb-2 text-xs uppercase tracking-widest transition-colors hover:text-highlight"
             >
               Visit our India website
               <ArrowUpRight size={15} />
@@ -107,7 +108,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-sm text-white/65 transition-colors hover:text-brand-gold"
+                    className="text-sm text-white/65 transition-colors hover:text-highlight"
                   >
                     {link.label}
                   </Link>
@@ -127,11 +128,11 @@ export default function Footer() {
                 href="/Brochure_Layout_Nepal.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 text-sm text-white/65 transition-colors hover:text-brand-gold"
+                className="group inline-flex items-center gap-3 text-sm text-white/65 transition-colors hover:text-highlight"
               >
                 <Eye
                   size={17}
-                  className="shrink-0 text-brand-gold transition-transform group-hover:scale-110"
+                  className="shrink-0 text-highlight transition-transform group-hover:scale-110"
                 />
                 View Brochure
                 <ArrowUpRight size={13} />
@@ -140,11 +141,11 @@ export default function Footer() {
               <a
                 href="/Brochure_Layout_Nepal.pdf"
                 download="Property-Brochure.pdf"
-                className="group inline-flex items-center gap-3 text-sm text-white/65 transition-colors hover:text-brand-gold"
+                className="group inline-flex items-center gap-3 text-sm text-white/65 transition-colors hover:text-highlight"
               >
                 <Download
                   size={17}
-                  className="shrink-0 text-brand-gold transition-transform group-hover:translate-y-0.5"
+                  className="shrink-0 text-highlight transition-transform group-hover:translate-y-0.5"
                 />
                 Download Brochure
               </a>
@@ -159,7 +160,7 @@ export default function Footer() {
 
             <ul className="space-y-5">
               <li className="flex items-start gap-3">
-                <MapPin size={18} className="mt-0.5 shrink-0 text-brand-gold" />
+                <MapPin size={18} className="mt-0.5 shrink-0 text-highlight" />
                 <p className="text-sm leading-6 text-white/65">
                   Shop No-8, 2nd Floor, Rungta Mall, Adarsh Nagar, Birgunj -
                   44300 (Nepal)
@@ -167,20 +168,20 @@ export default function Footer() {
               </li>
 
               <li className="flex items-center gap-3">
-                <Phone size={17} className="shrink-0 text-brand-gold" />
+                <Phone size={17} className="shrink-0 text-highlight" />
                 <a
                   href="tel:+9779802591815"
-                  className="text-sm text-white/65 transition-colors hover:text-brand-gold"
+                  className="text-sm text-white/65 transition-colors hover:text-highlight"
                 >
                   +977 - 98025-91815
                 </a>
               </li>
 
               <li className="flex items-start gap-3">
-                <Mail size={17} className="mt-0.5 shrink-0 text-brand-gold" />
+                <Mail size={17} className="mt-0.5 shrink-0 text-highlight" />
                 <a
                   href="mailto:info@vastuvihar.org"
-                  className="break-all text-sm text-white/65 transition-colors hover:text-brand-gold"
+                  className="break-all text-sm text-white/65 transition-colors hover:text-highlight"
                 >
                   info@vastuvihar.org
                 </a>
@@ -198,13 +199,13 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
             <Link
               to="/privacy-policy"
-              className="text-xs text-white/55 transition-colors hover:text-brand-gold"
+              className="text-xs text-white/55 transition-colors hover:text-highlight"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms-and-conditions"
-              className="text-xs text-white/55 transition-colors hover:text-brand-gold"
+              className="text-xs text-white/55 transition-colors hover:text-highlight"
             >
               Terms &amp; Conditions
             </Link>
@@ -212,7 +213,7 @@ export default function Footer() {
               href="https://vastuvihar.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-brand-gold transition-colors hover:text-white"
+              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-highlight transition-colors hover:text-white"
             >
               Building your future
               <ArrowUpRight size={14} />
@@ -222,4 +223,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+});
+
+export default Footer;

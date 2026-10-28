@@ -1,12 +1,12 @@
 export default function LegalLayout({ eyebrow, title, updated, intro, children }) {
   return (
-    <main className="min-h-screen bg-brand-paper px-5 pb-20 pt-24 sm:px-8 lg:px-16">
+    <main className="min-h-screen bg-white px-5 pb-20 pt-24 sm:px-8 lg:px-16">
       <article className="mx-auto max-w-4xl py-10 sm:py-14 lg:py-20">
-        <header className="mb-12 border-b border-brand-line pb-9 sm:mb-14">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-brand-ochre">
+        <header className="mb-12 border-b border-border-light pb-9 sm:mb-14">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-highlight-hover">
             {eyebrow}
           </p>
-          <h1 className="mt-4 font-serif text-4xl font-light leading-tight text-brand-pine sm:text-6xl">
+          <h1 className="mt-4 font-display text-4xl font-light leading-tight text-brand sm:text-6xl">
             {title}
           </h1>
           <p className="mt-5 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base">
